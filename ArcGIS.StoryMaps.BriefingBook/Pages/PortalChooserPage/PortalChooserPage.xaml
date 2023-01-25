@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
-             x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.PortalChooserPage">
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
+    x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.PortalChooserPage">
 
     <ContentPage.ToolbarItems>
-
         <ToolbarItem
             Text="{x:Static assets:StringSources.NEXT}"
             Order="Primary"
             Priority="0"
             Clicked="OnNextButtonClicked"/>
-
     </ContentPage.ToolbarItems>
 
     <Grid
@@ -23,24 +22,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border
-            Grid.Row="0"
-            Stroke="{x:StaticResource Primary}"
-            StrokeThickness="2"
-            BackgroundColor="Transparent">
-
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10" />
-            </Border.StrokeShape>
-
-            <Entry
-                x:Name="entry"
-                Margin="10"
-                Placeholder="Enter text"
-                ClearButtonVisibility="WhileEditing"
-                TextChanged="OnEntryTextChanged"
-                Completed="OnEntryCompleted" />
-        </Border>
+        <Entry
+             x:Name="entry"
+             Placeholder="Enter text"
+             ClearButtonVisibility="WhileEditing"
+             TextChanged="OnEntryTextChanged"
+             Completed="OnEntryCompleted" />
 
         <Label
             Grid.Row="1"
@@ -63,49 +50,39 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
-                        <Grid
-                            Margin="10"
-                            ColumnSpacing="10">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Text="{x:Static assets:StringSources.DELETE}"
+                                        IconImageSource="{x:Static assets:ImageSources.DELETE}"
+                                        BackgroundColor="Red"
+                                        Invoked="OnDeleteSwipeItemInvoked" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
 
                             <StackLayout
-                                Grid.Column="0">
+                                    Grid.Column="0"
+                                    Margin="10"
+                                    VerticalOptions="Center">
 
                                 <Label
-                                    Text="{Binding Name}"
-                                    FontSize="Body"
-                                    VerticalTextAlignment="Center"
-                                    MaxLines="2" />
+                                        Text="{Binding Name}"
+                                        FontSize="Caption"
+                                        VerticalTextAlignment="Center"
+                                        MaxLines="1" />
 
                                 <Label
-                                    Text="{Binding Url}"
-                                    FontSize="Caption"
-                                    VerticalTextAlignment="Center"
-                                    MaxLines="2" />
+                                        Text="{Binding Url}"
+                                        FontSize="Caption"
+                                        VerticalTextAlignment="Center"
+                                        MaxLines="2" />
+
                             </StackLayout>
-
-                            <Button
-                                Grid.Column="1"
-                                WidthRequest="36"
-                                HeightRequest="36"
-                                CornerRadius="18"
-                                ImageSource="{x:Static assets:ImageSources.CLOSE}"
-                                BackgroundColor="{x:StaticResource Primary}">
-                            </Button>
-
-                        </Grid>
+                        </SwipeView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
 </ContentPage>

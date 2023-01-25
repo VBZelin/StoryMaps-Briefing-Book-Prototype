@@ -41,7 +41,6 @@
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
@@ -62,8 +61,11 @@
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Assets\" />
 	  <None Remove="Pages\PortalChooserPage\" />
-	  <None Remove="Resources\Images\close_white_24dp.svg" />
 	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="Resources\Images\close_white_24dp.svg" />
+	  <None Remove="Resources\Images\delete_white_24dp.svg" />
+	  <None Remove="Pages\SignInPage\" />
+	  <None Remove="Pages\GalleryPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
@@ -72,6 +74,8 @@
 	  <Folder Include="Services\" />
 	  <Folder Include="Assets\" />
 	  <Folder Include="Pages\PortalChooserPage\" />
+	  <Folder Include="Pages\SignInPage\" />
+	  <Folder Include="Pages\GalleryPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Pages\LandingPage\LandingPage.xaml">
@@ -80,11 +84,18 @@
 	  <MauiXaml Update="Pages\PortalChooserPage\PortalChooserPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SignInPage\SignInPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\GalleryPage\GalleryPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\ArcGIS.StoryMaps.BriefingBook.Shared\ArcGIS.StoryMaps.BriefingBook.Shared.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\close_white_24dp.svg" />
+	  <BundleResource Include="Resources\Images\delete_white_24dp.svg" />
 	</ItemGroup>
 </Project>
