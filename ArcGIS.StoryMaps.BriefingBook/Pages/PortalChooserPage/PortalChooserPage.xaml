@@ -5,16 +5,17 @@
              x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.PortalChooserPage">
 
     <ContentPage.ToolbarItems>
+
         <ToolbarItem
             Text="{x:Static assets:StringSources.NEXT}"
             Order="Primary"
             Priority="0"
             Clicked="OnNextButtonClicked"/>
+
     </ContentPage.ToolbarItems>
 
     <Grid
-        Margin="10"
-        HorizontalOptions="Center">
+        Margin="10">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -47,16 +48,64 @@
             Text="{x:Static assets:StringSources.EXAMPLE_PORTAL}"
             FontSize="Caption" />
 
-        <CollectionView
+        <ListView
             Grid.Row="2"
-            ItemsSource="{Binding SavedPortals}">
+            HasUnevenRows="True">
 
-            <CollectionView.ItemTemplate>
+            <!--ItemsSource="{Binding SavedPortals}"-->
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type Color}">
+                    <Color>Aqua</Color>
+                    <Color>Black</Color>
+                </x:Array>
+            </ListView.ItemsSource>
+
+            <ListView.ItemTemplate>
                 <DataTemplate>
+                    <ViewCell>
 
+                        <Grid
+                            Margin="10"
+                            ColumnSpacing="10">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout
+                                Grid.Column="0">
+
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="Body"
+                                    VerticalTextAlignment="Center"
+                                    MaxLines="2" />
+
+                                <Label
+                                    Text="{Binding Url}"
+                                    FontSize="Caption"
+                                    VerticalTextAlignment="Center"
+                                    MaxLines="2" />
+                            </StackLayout>
+
+                            <Button
+                                Grid.Column="1"
+                                WidthRequest="36"
+                                HeightRequest="36"
+                                CornerRadius="18"
+                                ImageSource="{x:Static assets:ImageSources.CLOSE}"
+                                BackgroundColor="{x:StaticResource Primary}">
+                            </Button>
+
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </ContentPage>

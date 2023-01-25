@@ -51,6 +51,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,6 +62,8 @@
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Assets\" />
 	  <None Remove="Pages\PortalChooserPage\" />
+	  <None Remove="Resources\Images\close_white_24dp.svg" />
+	  <None Remove="CommunityToolkit.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
@@ -80,5 +83,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\ArcGIS.StoryMaps.BriefingBook.Shared\ArcGIS.StoryMaps.BriefingBook.Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\close_white_24dp.svg" />
 	</ItemGroup>
 </Project>

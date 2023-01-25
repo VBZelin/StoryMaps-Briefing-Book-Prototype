@@ -11,8 +11,7 @@
     </ContentPage.BindingContext>
 
     <Grid
-        Margin="10"
-        HorizontalOptions="Center">
+        Margin="10">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,11 +25,14 @@
 
         <Label
             Grid.Row="0"
+            Margin="50"
             Text="{x:Static assets:StringSources.APP_TITLE}"
-            FontSize="Title" />
+            FontSize="Title"
+            VerticalTextAlignment="Center" />
 
         <Button
             Grid.Row="2"
+            Margin="50"
             Text="{x:Static assets:StringSources.SIGN_IN}"
             Clicked="OnSignInButtonClicked" />
 
