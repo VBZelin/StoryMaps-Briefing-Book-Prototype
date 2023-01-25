@@ -1,4 +1,6 @@
-﻿namespace ArcGIS.StoryMaps.BriefingBook
+﻿using ArcGIS.StoryMaps.BriefingBook.Pages;
+
+namespace ArcGIS.StoryMaps.BriefingBook
 {
     public partial class App : Application
     {
@@ -13,7 +15,7 @@
 
         private void RegisterAllRoutes()
         {
-
+            Routing.RegisterRoute(nameof(PortalChooserPage), typeof(PortalChooserPage));
         }
     }
 }

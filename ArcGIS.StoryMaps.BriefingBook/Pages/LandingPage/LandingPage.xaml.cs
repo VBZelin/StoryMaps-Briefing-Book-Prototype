@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        private async void OnSignInButtonClicked(System.Object sender, System.EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"/{nameof(PortalChooserPage)}");
+        }
     }
 }

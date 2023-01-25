@@ -60,6 +60,7 @@
 	  <None Remove="Services\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Assets\" />
+	  <None Remove="Pages\PortalChooserPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
@@ -67,9 +68,13 @@
 	  <Folder Include="Pages\LandingPage\" />
 	  <Folder Include="Services\" />
 	  <Folder Include="Assets\" />
+	  <Folder Include="Pages\PortalChooserPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Pages\LandingPage\LandingPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\PortalChooserPage\PortalChooserPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,7 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ArcGIS.StoryMaps.BriefingBook.ViewModels"
+             xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
              x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.LandingPage"
-             Title="LandingPage">
+             Shell.NavBarIsVisible="False">
 
+    <ContentPage.BindingContext>
+        <viewModels:LandingPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid
+        Margin="20, 100, 20, 100"
+        HorizontalOptions="Center">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Text="{x:Static assets:StringSources.APP_TITLE}"
+            FontSize="Title" />
+
+        <Button
+            Grid.Row="2"
+            Text="{x:Static assets:StringSources.SIGN_IN}"
+            Clicked="OnSignInButtonClicked" />
+
+    </Grid>
 </ContentPage>
