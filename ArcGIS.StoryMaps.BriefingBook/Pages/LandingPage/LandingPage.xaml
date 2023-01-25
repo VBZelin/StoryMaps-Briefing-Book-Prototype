@@ -11,7 +11,7 @@
     </ContentPage.BindingContext>
 
     <Grid
-        Margin="20, 100, 20, 100"
+        Margin="10"
         HorizontalOptions="Center">
 
         <Grid.RowDefinitions>

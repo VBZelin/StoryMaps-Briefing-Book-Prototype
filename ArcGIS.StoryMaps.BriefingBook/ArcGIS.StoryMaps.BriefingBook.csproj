@@ -78,4 +78,7 @@
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\ArcGIS.StoryMaps.BriefingBook.Shared\ArcGIS.StoryMaps.BriefingBook.Shared.csproj" />
+	</ItemGroup>
 </Project>

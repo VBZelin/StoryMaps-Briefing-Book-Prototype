@@ -18,7 +18,7 @@
             set => SetValue(ImageSourceProperty, value);
         }
 
-        public CustomImage()
+        public ImageWithIndicator()
         {
             InitializeComponent();
 
@@ -28,14 +28,14 @@
 
         private static void OnShowIndicatorChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var control = (CustomImage)bindable;
+            var control = (ImageWithIndicator)bindable;
 
             control.ActivityIndicator.IsVisible = (bool)newValue;
         }
 
         private static void OnImageSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var control = (CustomImage)bindable;
+            var control = (ImageWithIndicator)bindable;
 
             control.Image.Source = null;
             control.Image.Source = (ImageSource)newValue;

@@ -4,7 +4,7 @@
              xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
              x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.PortalChooserPage">
 
-     <ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="{x:Static assets:StringSources.NEXT}"
             Order="Primary"
@@ -12,11 +12,51 @@
             Clicked="OnNextButtonClicked"/>
     </ContentPage.ToolbarItems>
 
-    <Entry
-        x:Name="entry"
-        Placeholder="Enter text"
-        ClearButtonVisibility="WhileEditing"
-        TextChanged="OnEntryTextChanged"
-        Completed="OnEntryCompleted" />
+    <Grid
+        Margin="10"
+        HorizontalOptions="Center">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Stroke="{x:StaticResource Primary}"
+            StrokeThickness="2"
+            BackgroundColor="Transparent">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+
+            <Entry
+                x:Name="entry"
+                Margin="10"
+                Placeholder="Enter text"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="OnEntryTextChanged"
+                Completed="OnEntryCompleted" />
+        </Border>
+
+        <Label
+            Grid.Row="1"
+            Margin="10"
+            Text="{x:Static assets:StringSources.EXAMPLE_PORTAL}"
+            FontSize="Caption" />
+
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding SavedPortals}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 </ContentPage>
