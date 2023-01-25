@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.UI.ImageWithIndicator">
+
+    <Grid>
+        <Image
+            x:Name="Image" />
+
+        <ActivityIndicator
+            x:Name="ActivityIndicator"
+            BindingContext="{Reference Image}"
+            IsRunning="{Binding IsLoading}" />
+    </Grid>
+</Frame>
+

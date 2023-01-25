@@ -22,13 +22,20 @@
 	  <None Remove="CustomComponents\UI\" />
 	  <None Remove="CustomComponents\ArcGISRuntime\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="CustomComponents\UI\ImageWithIndicator\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="CustomComponents\" />
 	  <Folder Include="CustomComponents\UI\" />
 	  <Folder Include="CustomComponents\ArcGISRuntime\" />
+	  <Folder Include="CustomComponents\UI\ImageWithIndicator\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="CustomComponents\UI\ImageWithIndicator\ImageWithIndicator.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>
