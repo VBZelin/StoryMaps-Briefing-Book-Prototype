@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Esri.ArcGISRuntime.Maui;
 
 namespace ArcGIS.StoryMaps.BriefingBook;
 
@@ -18,7 +19,7 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+            }).UseArcGISRuntime();
 
 #if DEBUG
         builder.Logging.AddDebug();

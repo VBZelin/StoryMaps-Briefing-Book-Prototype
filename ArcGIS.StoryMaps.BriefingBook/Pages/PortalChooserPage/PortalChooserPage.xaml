@@ -25,6 +25,7 @@
         <Entry
              x:Name="entry"
              Placeholder="Enter text"
+            Text="{Binding InputUrl}"
              ClearButtonVisibility="WhileEditing"
              TextChanged="OnEntryTextChanged"
              Completed="OnEntryCompleted" />
@@ -32,20 +33,13 @@
         <Label
             Grid.Row="1"
             Margin="10"
-            Text="{x:Static assets:StringSources.EXAMPLE_PORTAL}"
+            Text="{Binding Message}"
             FontSize="Caption" />
 
         <ListView
             Grid.Row="2"
-            HasUnevenRows="True">
-
-            <!--ItemsSource="{Binding SavedPortals}"-->
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type Color}">
-                    <Color>Aqua</Color>
-                    <Color>Black</Color>
-                </x:Array>
-            </ListView.ItemsSource>
+            HasUnevenRows="True"
+            ItemsSource="{Binding Portals}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -1,10 +1,18 @@
-﻿namespace ArcGIS.StoryMaps.BriefingBook.Pages
+﻿using ArcGIS.StoryMaps.BriefingBook.ViewModels;
+
+namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
     public partial class PortalChooserPage : ContentPage
     {
+        private PortalChooserPageViewModel viewModel;
+
         public PortalChooserPage()
         {
             InitializeComponent();
+
+            viewModel = new PortalChooserPageViewModel();
+
+            BindingContext = viewModel;
         }
 
         private async void OnNextButtonClicked(System.Object sender, System.EventArgs e)
