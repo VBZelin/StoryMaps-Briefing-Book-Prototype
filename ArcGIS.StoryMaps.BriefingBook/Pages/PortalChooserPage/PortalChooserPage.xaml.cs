@@ -1,18 +1,29 @@
 ﻿using ArcGIS.StoryMaps.BriefingBook.ViewModels;
+using ArcGIS.StoryMaps.BriefingBook.Services;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
     public partial class PortalChooserPage : ContentPage
     {
-        private PortalChooserPageViewModel viewModel;
+        private PortalChooserPageViewModel _viewModel;
+        private SQLiteDatabaseServer _sqlDatabaseServer;
 
-        public PortalChooserPage()
+        public PortalChooserPage(SQLiteDatabaseServer sqlDatabaseServer)
         {
             InitializeComponent();
 
-            viewModel = new PortalChooserPageViewModel();
+            _sqlDatabaseServer = sqlDatabaseServer;
 
-            BindingContext = viewModel;
+            _viewModel = new PortalChooserPageViewModel(_sqlDatabaseServer);
+
+            BindingContext = _viewModel;
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await _viewModel.FilterPortalInfos();
         }
 
         private async void OnNextButtonClicked(System.Object sender, System.EventArgs e)

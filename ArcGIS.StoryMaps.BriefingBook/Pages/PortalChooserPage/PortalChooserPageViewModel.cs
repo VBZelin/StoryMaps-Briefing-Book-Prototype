@@ -1,21 +1,23 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Android.App.AppSearch;
 using ArcGIS.StoryMaps.BriefingBook.Assets;
 using ArcGIS.StoryMaps.BriefingBook.Models;
+using ArcGIS.StoryMaps.BriefingBook.Services;
 
 namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 {
     public class PortalChooserPageViewModel : INotifyPropertyChanged
     {
-        // public 
-        public IEnumerable<PortalInfo> PortalItems => _savedPortalInfos.Where(SearchFunction);
+        // public
+        public IEnumerable<PortalInfo> PortalInfos { get; set; }
 
         public string Message => GetMessage();
 
         // private
         private readonly IEnumerable<PortalInfo> _savedPortalInfos;
+
+        private SQLiteDatabaseServer _sqlDatabaseServer;
 
         private bool _isCheckingUrl = false;
         private bool _isValidUrl = false;
@@ -35,20 +37,24 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                     _isCheckingUrl = false;
                     _isValidUrl = false;
 
+                    _ = FilterPortalInfos();
+
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(Message));
-                    OnPropertyChanged(nameof(PortalItems));
                 }
             }
         }
 
-        public PortalChooserPageViewModel()
+        public PortalChooserPageViewModel(SQLiteDatabaseServer sqlDatabaseServer)
         {
+            _sqlDatabaseServer = sqlDatabaseServer;
         }
 
-        public bool SearchFunction(PortalInfo portalInfo)
+        public async Task FilterPortalInfos()
         {
-            return portalInfo.Name.ToLower().Contains(InputUrl) || portalInfo.Url.ToLower().Contains(InputUrl);
+            var portalInfos = await _sqlDatabaseServer.GetPortalInfosSortedByUnixTimeAsync(InputUrl);
+
+            PortalInfos = portalInfos;
         }
 
         private string GetMessage()

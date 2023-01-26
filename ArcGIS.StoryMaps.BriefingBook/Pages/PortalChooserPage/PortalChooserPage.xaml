@@ -39,7 +39,7 @@
         <ListView
             Grid.Row="2"
             HasUnevenRows="True"
-            ItemsSource="{Binding Portals}">
+            ItemsSource="{Binding PortalInfos}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

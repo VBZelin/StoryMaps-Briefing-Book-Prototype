@@ -1,9 +1,13 @@
 ﻿using System;
+using SQLite;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Models
 {
+    [Table("PortalInfo")]
     public class PortalInfo
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public long UnixTime { get; set; }

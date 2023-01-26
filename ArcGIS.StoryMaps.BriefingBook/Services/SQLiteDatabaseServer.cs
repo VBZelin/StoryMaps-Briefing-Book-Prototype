@@ -24,30 +24,30 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
         {
         }
 
-        async Task init()
+        async Task Init()
         {
             if (Database != null)
                 return;
 
             Database = new SQLiteAsyncConnection(DatabasePath, Flags);
 
-            await Database.CreateTableAsync<PortalInfo>();
+            var result = await Database.CreateTableAsync<PortalInfo>();
 
             // Add tables in here
         }
 
         public async Task<List<PortalInfo>> GetPortalInfosSortedByUnixTimeAsync(string inputUrl)
         {
-            await init();
+            await Init();
 
-            var query = $"SELECT * FROM PortalInfo WHERE Url LIKE '%{inputUrl}%' = ORDER BY UnixTime DESC";
+            var query = $"SELECT * FROM PortalInfo WHERE Url LIKE '%{inputUrl}%' ORDER BY UnixTime DESC";
 
             return await Database.QueryAsync<PortalInfo>(query);
         }
 
         public async Task<int> AddPortalInfoAsync(PortalInfo portalInfo)
         {
-            await init();
+            await Init();
 
             if (portalInfo.Url != "")
                 return await Database.UpdateAsync(portalInfo);
@@ -57,7 +57,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
 
         public async Task<int> DeletePortalInfoAsync(PortalInfo portalInfo)
         {
-            await init();
+            await Init();
 
             return await Database.DeleteAsync(portalInfo);
         }
