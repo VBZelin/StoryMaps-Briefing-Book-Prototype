@@ -18,7 +18,7 @@
                     <Grid Margin="10" Padding="0" ColumnSpacing="0" RowSpacing="0">
                         <Frame BackgroundColor="White" Padding="10" Margin="0" HeightRequest="200" WidthRequest="300" CornerRadius="0" HasShadow="True">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView }, Path=BindingContext.OpenWebMapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView }, Path=BindingContext.OpenStoryMapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1" />
                             </Frame.GestureRecognizers>
                             <Frame.Shadow>
                                 <Shadow Brush="Black"
@@ -27,10 +27,7 @@
                                  Opacity="0.8" />
                             </Frame.Shadow>
                             <Grid  ColumnSpacing="0" RowSpacing="0" >
-                                <!--<Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>-->
+                                
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="100" />
                                     <RowDefinition Height="100" />
@@ -50,9 +47,7 @@
                                             <On Platform="Android">false</On>
                                         </OnPlatform>
                                     </Frame.IsClippedToBounds>
-                                    <!-- <Image Source="https://www.arcgis.com/sharing/rest/content/items/2b902a2dea2f4510b50e2b28e6634ee6/info/thumbnail/ago_downloaded.png"></Image>-->
-                                    <!-- <Image Source="{Binding ThumbnailUri.AbsoluteUri}" VerticalOptions="Center"/>-->
-                                    <!-- <Image Source="{Binding Thumbnail}" VerticalOptions="Center"/>-->
+                                   
                                     <Image HeightRequest="150" WidthRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit">
                                         <Image.Source>
                                             <UriImageSource Uri="{Binding Thumbnail}" CacheValidity="1" CachingEnabled="true"/>
