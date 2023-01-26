@@ -66,6 +66,7 @@
 	  <None Remove="Resources\Images\delete_white_24dp.svg" />
 	  <None Remove="Pages\SignInPage\" />
 	  <None Remove="Pages\GalleryPage\" />
+	  <None Remove="Pages\BriefingPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
@@ -76,6 +77,7 @@
 	  <Folder Include="Pages\PortalChooserPage\" />
 	  <Folder Include="Pages\SignInPage\" />
 	  <Folder Include="Pages\GalleryPage\" />
+	  <Folder Include="Pages\BriefingPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Pages\LandingPage\LandingPage.xaml">
@@ -88,6 +90,9 @@
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\GalleryPage\GalleryPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BriefingPage\BriefingPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>

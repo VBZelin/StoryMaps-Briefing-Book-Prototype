@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
+using ArcGIS.StoryMaps.BriefingBook.Pages;
+using ArcGIS.StoryMaps.BriefingBook.ViewModels;
+
 namespace ArcGIS.StoryMaps.BriefingBook;
 
 public static class MauiProgram
@@ -34,11 +37,13 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
+        mauiAppBuilder.Services.AddTransient<BriefingPageViewModel>();
         return mauiAppBuilder;
     }
 
     public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
+        mauiAppBuilder.Services.AddTransient<BriefingPage>();
         return mauiAppBuilder;
     }
 }
