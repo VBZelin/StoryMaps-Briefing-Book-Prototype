@@ -48,6 +48,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Esri.ArcGISRuntime.Maui" Version="200.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
@@ -69,13 +70,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
-	  <Folder Include="Pages\" />
 	  <Folder Include="Pages\LandingPage\" />
 	  <Folder Include="Services\" />
 	  <Folder Include="Assets\" />
 	  <Folder Include="Pages\PortalChooserPage\" />
 	  <Folder Include="Pages\SignInPage\" />
-	  <Folder Include="Pages\GalleryPage\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Pages\LandingPage\LandingPage.xaml">
