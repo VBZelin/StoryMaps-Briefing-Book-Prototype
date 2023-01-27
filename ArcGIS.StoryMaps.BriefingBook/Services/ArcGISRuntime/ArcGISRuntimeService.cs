@@ -15,9 +15,9 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
         {
             try
             {
-                ArcGISPortal arcGISPortal = await ArcGISPortal.CreateAsync(new Uri(portalUrl));
+                ArcGISPortal securedPortal = await ArcGISPortal.CreateAsync(new Uri(portalUrl));
 
-                return arcGISPortal;
+                return securedPortal;
             }
             catch (Exception e)
             {
