@@ -1,7 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.GalleryPage"
-             Title="GalleryPage">
+             Title="GalleryPage"
+             x:Name="Page">
 
+    <Grid
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+
+        <CollectionView
+            x:Name="CollectionView"
+            ItemsSource="{Binding PublicPortalItems}"
+            SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    VerticalItemSpacing="16"
+                    Orientation="Vertical"
+                    Span="{Binding Source={x:Reference  Page}, Path=GridColumns}" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Margin="10"
+                        Padding="0"
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+
+                        <Frame
+                            BackgroundColor="White"
+                            Padding="10"
+                            Margin="0"
+                            HeightRequest="200"
+                            WidthRequest="300"
+                            CornerRadius="0"
+                            HasShadow="True">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={x:Reference CollectionView}, Path=OpenStoryMapCommand}"
+                                    NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+
+                            <Frame.Shadow>
+                                <Shadow Brush="Black"
+                                    Offset="20,20"
+                                    Radius="40"
+                                    Opacity="0.8" />
+                            </Frame.Shadow>
+
+                            <Grid
+                                ColumnSpacing="0"
+                                RowSpacing="0" >
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100" />
+                                    <RowDefinition Height="100" />
+                                </Grid.RowDefinitions>
+
+                                <Frame
+                                    BackgroundColor="White"
+                                    Padding="2" Margin="0"
+                                    HeightRequest="100"
+                                    WidthRequest="100"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    HasShadow="False">
+
+                                    <Frame.IsClippedToBounds>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Boolean">
+                                            <On Platform="iOS">true</On>
+                                            <On Platform="Android">false</On>
+                                        </OnPlatform>
+                                    </Frame.IsClippedToBounds>
+
+                                    <Image
+                                        HeightRequest="150"
+                                        WidthRequest="200"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        Aspect="AspectFit">
+
+                                        <Image.Source>
+                                            <UriImageSource
+                                                Uri="{Binding Thumbnail}"
+                                                CacheValidity="1"
+                                                CachingEnabled="true" />
+                                        </Image.Source>
+                                    </Image>
+
+                                </Frame>
+
+                                <VerticalStackLayout
+                                    Grid.Row="2"
+                                    Spacing="0"
+                                    VerticalOptions="Center">
+
+                                    <Label
+                                        Text="{Binding Title}"
+                                        LineBreakMode ="WordWrap"
+                                        InputTransparent="True" />
+
+                                    <Label
+                                        Text="{Binding Owner}"
+                                        LineBreakMode ="WordWrap"
+                                        InputTransparent="True" />
+
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

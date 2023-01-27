@@ -1,4 +1,6 @@
-﻿namespace ArcGIS.StoryMaps.BriefingBook.Pages
+﻿using Esri.ArcGISRuntime.Portal;
+
+namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
     public partial class SignInPage : ContentPage
     {
@@ -9,7 +11,14 @@
 
         private async void OnNextButtonClicked(System.Object sender, System.EventArgs e)
         {
-            await Shell.Current.GoToAsync($"/{nameof(GalleryPage)}");
+            ArcGISPortal arcgisPortal = await ArcGISPortal.CreateAsync();
+            var navigationParameter = new Dictionary<string, object>
+              {
+                 { "portal",arcgisPortal}
+
+              };
+
+            await Shell.Current.GoToAsync($"/{nameof(GalleryPage)}",navigationParameter);
         }
     }
 }
