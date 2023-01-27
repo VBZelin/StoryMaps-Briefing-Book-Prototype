@@ -10,7 +10,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
-        public long UnixTime { get; set; }
+        public DateTime UnixTime { get; set; }
         public string Json { get; set; }
     }
 }

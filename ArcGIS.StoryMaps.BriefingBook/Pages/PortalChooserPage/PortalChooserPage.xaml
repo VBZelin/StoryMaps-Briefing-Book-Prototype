@@ -10,7 +10,7 @@
             Text="{x:Static assets:StringSources.NEXT}"
             Order="Primary"
             Priority="0"
-            Clicked="OnNextButtonClicked"/>
+            Command="{Binding NextButtonClickedCommand}" />
     </ContentPage.ToolbarItems>
 
     <Grid

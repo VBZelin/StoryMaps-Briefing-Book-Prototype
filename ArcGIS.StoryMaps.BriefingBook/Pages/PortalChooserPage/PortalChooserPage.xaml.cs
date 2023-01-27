@@ -6,6 +6,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
     public partial class PortalChooserPage : ContentPage
     {
         private PortalChooserPageViewModel _viewModel;
+
         private SQLiteDatabaseServer _sqlDatabaseServer;
 
         public PortalChooserPage(SQLiteDatabaseServer sqlDatabaseServer)
@@ -26,15 +27,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             await _viewModel.FilterPortalInfos();
         }
 
-        private async void OnNextButtonClicked(System.Object sender, System.EventArgs e)
+        private async void OnEntryTextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
         {
-            // TODO: add logic in here
-
-            await Shell.Current.GoToAsync($"/{nameof(SignInPage)}");
-        }
-
-        private void OnEntryTextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
-        {
+            await _viewModel.FilterPortalInfos();
+            await _viewModel.ValidateUrl();
         }
 
         private void OnEntryCompleted(System.Object sender, System.EventArgs e)
