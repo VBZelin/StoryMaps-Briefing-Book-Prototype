@@ -15,9 +15,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         // public
         public IEnumerable<PortalInfo> PortalInfos { get; private set; }
 
-        public object CurrentSecuredPortal { get; private set; }
-
-        public Uri CurrentPortalUrl { get; private set; }
+        public Esri.ArcGISRuntime.Portal.ArcGISPortal CurrentSecuredPortal { get; private set; }
 
         public SignInType CurrentSignInType { get; private set; }
 
@@ -29,7 +27,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         private readonly IEnumerable<PortalInfo> _savedPortalInfos;
 
         private SQLiteDatabaseService _sqlDatabaseService;
-        private ArcGISRuntimeService _portalService;
+        private ArcGISRuntimeService _arcGISRuntimeService;
 
         private string _inputUrl = "";
 
@@ -87,17 +85,29 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             }
         }
 
-        public PortalChooserPageViewModel(SQLiteDatabaseService sqlDatabaseService, ArcGISRuntimeService portalService)
+        public PortalChooserPageViewModel(SQLiteDatabaseService sqlDatabaseService, ArcGISRuntimeService arcGISRuntimeService)
         {
             _sqlDatabaseService = sqlDatabaseService;
-            _portalService = portalService;
+            _arcGISRuntimeService = arcGISRuntimeService;
 
             NextButtonClickedCommand = new Command(
                 execute: async () =>
                 {
+                    var securedPortalUrl = CurrentSecuredPortal.Uri.ToString();
+
+                    var portalInfo = new PortalInfo
+                    {
+                        Name = CurrentSecuredPortal.PortalInfo.PortalName,
+                        Url = securedPortalUrl,
+                        UnixTime = DateTime.UtcNow,
+                        Json = "{}"
+                    };
+
+                    await _sqlDatabaseService.AddPortalInfoAsync(portalInfo);
+
                     var pageParameters = new Dictionary<string, object>()
                     {
-                        ["PortalUrl"] = CurrentPortalUrl,
+                        ["PortalUrl"] = securedPortalUrl,
                         ["SignInType"] = CurrentSignInType
                     };
 
@@ -122,7 +132,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             IsCheckingUrl = true;
 
             CurrentSecuredPortal = null;
-            CurrentPortalUrl = null;
 
             IsValidUrl = false;
 
@@ -132,12 +141,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
             if (isUrl)
             {
-                var securedPortal = await _portalService.GetPortalIfUrlIsValid(realUrl);
+                var securedPortal = await _arcGISRuntimeService.GetPortalIfUrlIsValid(realUrl);
 
                 if (securedPortal is not null)
                 {
                     CurrentSecuredPortal = securedPortal;
-                    CurrentPortalUrl = securedPortal.Uri;
 
                     IsValidUrl = true;
                 }

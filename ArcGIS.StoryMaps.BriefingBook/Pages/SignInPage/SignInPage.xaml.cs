@@ -6,7 +6,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
     [QueryProperty(nameof(SignInType), nameof(SignInType))]
     public partial class SignInPage : ContentPage
     {
-        public Uri PortalUrl { get; set; }
+        public string PortalUrl { get; set; }
 
         public SignInType SignInType { get; set; }
 

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+
+#if ANDROID
 using Newtonsoft.Json;
+#endif
 
 namespace ArcGIS.StoryMaps.BriefingBook.Helpers
 {
@@ -43,9 +46,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
         // Debug log object
         public static void DebugLogObject(object _object)
         {
+#if ANDROID
             var text = JsonConvert.SerializeObject(_object, Formatting.Indented);
 
             Console.WriteLine(text);
+#endif
         }
     }
 }

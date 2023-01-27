@@ -23,6 +23,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
             }
             catch (Exception e)
             {
+                Utility.DebugLogObject(e);
+
                 return null;
             }
         }

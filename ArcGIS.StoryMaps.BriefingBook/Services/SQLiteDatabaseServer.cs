@@ -43,11 +43,20 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
             return await Database.QueryAsync<PortalInfo>(query);
         }
 
+        public async Task<PortalInfo> GetPortalInfoByUrlAsync(string url)
+        {
+            await Init();
+
+            return await Database.Table<PortalInfo>().Where(item => item.Url == url).FirstOrDefaultAsync();
+        }
+
         public async Task<int> AddPortalInfoAsync(PortalInfo portalInfo)
         {
             await Init();
 
-            if (portalInfo.Url != "")
+            var item = await GetPortalInfoByUrlAsync(portalInfo.Url);
+
+            if (item is not null)
                 return await Database.UpdateAsync(portalInfo);
             else
                 return await Database.InsertAsync(portalInfo);
