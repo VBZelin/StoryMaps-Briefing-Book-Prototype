@@ -4,7 +4,7 @@ using ArcGIS.StoryMaps.BriefingBook.Models;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Services
 {
-    public class SQLiteDatabaseServer
+    public class SQLiteDatabaseService
     {
         SQLiteAsyncConnection Database;
 
@@ -20,9 +20,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
 
         public static string DatabasePath => Path.Combine(FileSystem.AppDataDirectory, FileName);
 
-        public SQLiteDatabaseServer()
-        {
-        }
+        public SQLiteDatabaseService() { }
 
         async Task Init()
         {

@@ -4,7 +4,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
     x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.PortalChooserPage">
-
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="{x:Static assets:StringSources.NEXT}"
@@ -12,16 +11,13 @@
             Priority="0"
             Command="{Binding NextButtonClickedCommand}" />
     </ContentPage.ToolbarItems>
-
     <Grid
         Margin="10">
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <Entry
              x:Name="entry"
              Placeholder="Enter text"
@@ -29,18 +25,15 @@
              ClearButtonVisibility="WhileEditing"
              TextChanged="OnEntryTextChanged"
              Completed="OnEntryCompleted" />
-
         <Label
             Grid.Row="1"
             Margin="10"
             Text="{Binding Message}"
             FontSize="Caption" />
-
         <ListView
             Grid.Row="2"
             HasUnevenRows="True"
             ItemsSource="{Binding PortalInfos}">
-
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -54,24 +47,20 @@
                                         Invoked="OnDeleteSwipeItemInvoked" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-
                             <StackLayout
                                     Grid.Column="0"
                                     Margin="10"
                                     VerticalOptions="Center">
-
                                 <Label
                                         Text="{Binding Name}"
                                         FontSize="Caption"
                                         VerticalTextAlignment="Center"
                                         MaxLines="1" />
-
                                 <Label
                                         Text="{Binding Url}"
                                         FontSize="Caption"
                                         VerticalTextAlignment="Center"
                                         MaxLines="2" />
-
                             </StackLayout>
                         </SwipeView>
                     </ViewCell>

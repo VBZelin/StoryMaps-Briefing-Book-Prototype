@@ -7,15 +7,17 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
     {
         private PortalChooserPageViewModel _viewModel;
 
-        private SQLiteDatabaseServer _sqlDatabaseServer;
+        private SQLiteDatabaseService _sqlDatabaseSevrvice;
+        private ArcGISRuntimeService _arcGISRuntimeService;
 
-        public PortalChooserPage(SQLiteDatabaseServer sqlDatabaseServer)
+        public PortalChooserPage(SQLiteDatabaseService sqlDatabaseService, ArcGISRuntimeService arcGISRuntimeService)
         {
             InitializeComponent();
 
-            _sqlDatabaseServer = sqlDatabaseServer;
+            _sqlDatabaseSevrvice = sqlDatabaseService;
+            _arcGISRuntimeService = arcGISRuntimeService;
 
-            _viewModel = new PortalChooserPageViewModel(_sqlDatabaseServer);
+            _viewModel = new PortalChooserPageViewModel(_sqlDatabaseSevrvice, _arcGISRuntimeService);
 
             BindingContext = _viewModel;
         }

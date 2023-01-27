@@ -3,7 +3,7 @@ using SQLite;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Models
 {
-    [Table("PortalInfo")]
+    [Table(nameof(PortalInfo))]
     public class PortalInfo
     {
         [PrimaryKey, AutoIncrement]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Helpers
 {
@@ -22,7 +23,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
         }
 
         // Check if it is a valid url
-        public static bool IsValidUrl(string text)
+        public static bool IsUrl(string text)
         {
             Regex regex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
 
@@ -37,6 +38,14 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
             DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime.ToUniversalTime());
 
             return dateTimeOffset.ToUnixTimeSeconds().ToString();
+        }
+
+        // Debug log object
+        public static void DebugLogObject(object _object)
+        {
+            var text = JsonConvert.SerializeObject(_object, Formatting.Indented);
+
+            Console.WriteLine(text);
         }
     }
 }

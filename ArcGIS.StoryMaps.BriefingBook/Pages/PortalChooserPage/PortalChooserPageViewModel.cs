@@ -15,6 +15,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         // public
         public IEnumerable<PortalInfo> PortalInfos { get; set; }
 
+        public object CurrentSecuredPortal { private set; get; }
+
         public string Message => GetMessage();
 
         public ICommand NextButtonClickedCommand { private set; get; }
@@ -22,7 +24,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         // private
         private readonly IEnumerable<PortalInfo> _savedPortalInfos;
 
-        private SQLiteDatabaseServer _sqlDatabaseServer;
+        private SQLiteDatabaseService _sqlDatabaseService;
+        private ArcGISRuntimeService _portalService;
 
         private string _inputUrl = "";
 
@@ -35,6 +38,27 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 if (value != _inputUrl)
                 {
                     _inputUrl = !string.IsNullOrWhiteSpace(value) ? value.ToLower() : "";
+
+                    CurrentSecuredPortal = null;
+                    IsValidUrl = true;
+
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(Message));
+                }
+            }
+        }
+
+        private bool _isCheckingUrl = false;
+
+        public bool IsCheckingUrl
+        {
+            get { return _isCheckingUrl; }
+
+            set
+            {
+                if (value != _isCheckingUrl)
+                {
+                    _isCheckingUrl = value;
 
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(Message));
@@ -62,32 +86,20 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             }
         }
 
-        private bool _isCheckingUrl = false;
-
-        public bool IsCheckingUrl
+        public PortalChooserPageViewModel(SQLiteDatabaseService sqlDatabaseService, ArcGISRuntimeService portalService)
         {
-            get { return _isCheckingUrl; }
-
-            set
-            {
-                if (value != _isCheckingUrl)
-                {
-                    _isCheckingUrl = value;
-
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(Message));
-                }
-            }
-        }
-
-        public PortalChooserPageViewModel(SQLiteDatabaseServer sqlDatabaseServer)
-        {
-            _sqlDatabaseServer = sqlDatabaseServer;
+            _sqlDatabaseService = sqlDatabaseService;
+            _portalService = portalService;
 
             NextButtonClickedCommand = new Command(
                 execute: async () =>
                 {
-                    await Shell.Current.GoToAsync($"/{nameof(SignInPage)}");
+                    var pageParameters = new Dictionary<string, object>()
+                    {
+                        ["SecuredPortal"] = CurrentSecuredPortal
+                    };
+
+                    await Shell.Current.GoToAsync($"/{nameof(SignInPage)}", pageParameters);
                 },
                 canExecute: () =>
                 {
@@ -98,7 +110,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
         public async Task FilterPortalInfos()
         {
-            var portalInfos = await _sqlDatabaseServer.GetPortalInfosSortedByUnixTimeAsync(InputUrl);
+            var portalInfos = await _sqlDatabaseService.GetPortalInfosSortedByUnixTimeAsync(InputUrl);
 
             PortalInfos = portalInfos;
         }
@@ -109,9 +121,19 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
             var realUrl = Utility.GetRealPortalUrl(InputUrl);
 
-            IsValidUrl = Utility.IsValidUrl(realUrl);
+            var isUrl = Utility.IsUrl(realUrl);
 
-            await Task.Delay(200);
+            if (isUrl)
+            {
+                var securedPortal = await _portalService.GetPortalIfUrlIsValid(realUrl);
+
+                if (securedPortal is not null)
+                {
+                    CurrentSecuredPortal = securedPortal;
+
+                    IsValidUrl = true;
+                }
+            }
 
             IsCheckingUrl = false;
         }

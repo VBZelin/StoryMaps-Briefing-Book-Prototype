@@ -33,7 +33,8 @@ namespace ArcGIS.StoryMaps.BriefingBook
 
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddSingleton<SQLiteDatabaseServer>();
+            mauiAppBuilder.Services.AddSingleton<SQLiteDatabaseService>();
+            mauiAppBuilder.Services.AddSingleton<ArcGISRuntimeService>();
 
             return mauiAppBuilder;
         }

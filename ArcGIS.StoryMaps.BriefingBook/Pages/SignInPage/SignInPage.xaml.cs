@@ -1,7 +1,12 @@
-﻿namespace ArcGIS.StoryMaps.BriefingBook.Pages
+﻿using Esri.ArcGISRuntime.Portal;
+
+namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
+    [QueryProperty(nameof(SecuredPortal), nameof(SecuredPortal))]
     public partial class SignInPage : ContentPage
     {
+        public ArcGISPortal SecuredPortal;
+
         public SignInPage()
         {
             InitializeComponent();

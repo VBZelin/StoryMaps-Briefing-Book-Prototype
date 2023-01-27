@@ -54,6 +54,7 @@
 		<PackageReference Include="Esri.ArcGISRuntime.Maui" Version="200.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -72,6 +73,8 @@
 	  <None Remove="Esri.ArcGISRuntime.Maui" />
 	  <None Remove="sqlite-net-pcl" />
 	  <None Remove="SQLitePCLRaw.bundle_green" />
+	  <None Remove="Newtonsoft.Json" />
+	  <None Remove="Services\ArcGISRuntime\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
@@ -82,6 +85,7 @@
 	  <Folder Include="Pages\PortalChooserPage\" />
 	  <Folder Include="Pages\SignInPage\" />
 	  <Folder Include="Pages\GalleryPage\" />
+	  <Folder Include="Services\ArcGISRuntime\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Pages\LandingPage\LandingPage.xaml">

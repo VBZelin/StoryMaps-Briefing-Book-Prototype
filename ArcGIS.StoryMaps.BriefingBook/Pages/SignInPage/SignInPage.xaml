@@ -5,13 +5,11 @@
 	xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
     x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.SignInPage"
     Title="SignInPage">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
+	<ContentPage.ToolbarItems>
+		<ToolbarItem
             Text="{x:Static assets:StringSources.NEXT}"
             Order="Primary"
             Priority="0"
             Clicked="OnNextButtonClicked"/>
-    </ContentPage.ToolbarItems>
-
+	</ContentPage.ToolbarItems>
 </ContentPage>
