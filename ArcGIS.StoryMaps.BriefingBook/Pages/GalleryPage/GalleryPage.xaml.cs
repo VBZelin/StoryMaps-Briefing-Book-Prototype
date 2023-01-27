@@ -14,7 +14,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                 _portal = value;               
                 _galleryViewModel.portal= value;
                 _galleryViewModel.SearchPublicItems();
-
                 OnPropertyChanged();
             }
         }
@@ -32,15 +31,12 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             }
         }
 
-
-
         public GalleryPage()
         {
             InitializeComponent();
             _galleryViewModel = new GalleryPageViewModel();
             this.BindingContext = _galleryViewModel;
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-
             GridColumns = (int)(mainDisplayInfo.Width / 400);
         }
     }
