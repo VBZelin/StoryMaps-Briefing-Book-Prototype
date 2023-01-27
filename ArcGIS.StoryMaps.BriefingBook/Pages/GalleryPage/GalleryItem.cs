@@ -39,11 +39,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             set => SetProperty(ref _thumbnail, value);
         }
 
-        private void RaisedOnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));          
-        }
-
         /// <summary>
         /// Set a property and raise a property changed event if it has changed
         /// </summary>
@@ -53,11 +48,19 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             {
                 return false;
             }
+
             property = value;
+
             this.RaisedOnPropertyChanged(propertyName);
+
             return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisedOnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
