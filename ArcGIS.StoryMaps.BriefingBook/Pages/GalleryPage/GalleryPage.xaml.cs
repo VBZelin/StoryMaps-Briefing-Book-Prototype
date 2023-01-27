@@ -2,40 +2,53 @@
 
 namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
-    [QueryProperty(nameof(AGSPortal), "portal")]
+    [QueryProperty(nameof(ArcGISPortal), nameof(ArcGISPortal))]
     public partial class GalleryPage : ContentPage
     {
-        ArcGISPortal _portal;
-        public ArcGISPortal AGSPortal
+        private ArcGISPortal _portal;
+        public ArcGISPortal ArcGISPortal
         {
             get => _portal;
+
             set
             {
-                _portal = value;               
-                _galleryViewModel.portal= value;
-                _galleryViewModel.SearchPublicItems();
-                OnPropertyChanged();
+                if (value != _portal)
+                {
+                    _portal = value;
+
+                    _galleryViewModel.portal = value;
+                    _galleryViewModel.SearchPublicItems();
+
+                    OnPropertyChanged();
+                }
             }
         }
-        GalleryPageViewModel _galleryViewModel;
 
-        int _gridcolumns = 2;
-       
+        private int _gridColumns = 2;
         public int GridColumns
         {
-            get => _gridcolumns;
+            get => _gridColumns;
+
             set
             {
-                _gridcolumns = value;                
-                OnPropertyChanged();
+                if (value != _gridColumns)
+                {
+                    _gridColumns = value;
+
+                    OnPropertyChanged();
+                }
             }
         }
+
+        private GalleryPageViewModel _galleryViewModel;
 
         public GalleryPage()
         {
             InitializeComponent();
+
             _galleryViewModel = new GalleryPageViewModel();
-            this.BindingContext = _galleryViewModel;
+            BindingContext = _galleryViewModel;
+
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             GridColumns = (int)(mainDisplayInfo.Width / 400);
         }
