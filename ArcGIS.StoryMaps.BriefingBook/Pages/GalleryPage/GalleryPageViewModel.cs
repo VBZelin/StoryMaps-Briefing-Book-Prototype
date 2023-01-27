@@ -29,9 +29,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
         [RelayCommand]
         private  void OpenStoryMap(GalleryItem item)
         {
-            PortalItem _webmapItem = item.StoryMapPortalItem;
-            
-
+            PortalItem _webmapItem = item.StoryMapPortalItem;           
         }
 
         /// <summary>
@@ -45,9 +43,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             ObservableCollection<GalleryItem> portalItems = new ObservableCollection<GalleryItem>();
             // Get web map portal items from a keyword search
             List<PortalItem> storyMapItems;
-           // string queryExpression = $" type: (\"StoryMap\" NOT typekeywords:\"storymapcollection\")";
-
-
+            
             // Create a query parameters object with the expression and a limit of 10 results
             PortalQueryParameters queryParams = new PortalQueryParameters(queryExpression, 10)
             {
@@ -70,15 +66,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                     Title = item.Title,
                     Owner = item.Owner,
                     Thumbnail = item.Thumbnail.Source.ToString()
-                };
-               
-                portalItems.Add(_galleryItem);
-               
+                };               
+                portalItems.Add(_galleryItem);              
             }
-
             return portalItems;
-
         }
-
     }
 }

@@ -4,17 +4,13 @@
              x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.GalleryPage"
              Title="GalleryPage"
              x:Name="page">
-    
     <Grid x:Name="portalItemsGrid" HorizontalOptions="Fill" VerticalOptions="Fill">
-        
         <CollectionView  ItemsSource="{Binding PublicPortalItems}" SelectionMode="None" x:Name="collectionView">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout VerticalItemSpacing="16" Orientation="Vertical" Span="{Binding Source={x:Reference  page}, Path = GridColumns}"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-
-
                     <Grid Margin="10" Padding="0" ColumnSpacing="0" RowSpacing="0">
                         <Frame BackgroundColor="White" Padding="10" Margin="0" HeightRequest="200" WidthRequest="300" CornerRadius="0" HasShadow="True">
                             <Frame.GestureRecognizers>
@@ -27,12 +23,10 @@
                                  Opacity="0.8" />
                             </Frame.Shadow>
                             <Grid  ColumnSpacing="0" RowSpacing="0" >
-                                
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="100" />
                                     <RowDefinition Height="100" />
                                 </Grid.RowDefinitions>
-                                
                                 <Frame BackgroundColor="White"
                                    Padding="2" Margin="0"
                                    HeightRequest="100"
@@ -47,39 +41,21 @@
                                             <On Platform="Android">false</On>
                                         </OnPlatform>
                                     </Frame.IsClippedToBounds>
-                                   
                                     <Image HeightRequest="150" WidthRequest="200" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit">
                                         <Image.Source>
                                             <UriImageSource Uri="{Binding Thumbnail}" CacheValidity="1" CachingEnabled="true"/>
                                         </Image.Source>
                                     </Image>
                                 </Frame>
-
-
-
-
                                 <VerticalStackLayout  Grid.Row="2"  Spacing="0" VerticalOptions="Center">
                                     <Label Text="{Binding Title}"  LineBreakMode ="WordWrap" InputTransparent="True" />
                                     <Label Text="{Binding Owner}"  LineBreakMode ="WordWrap" InputTransparent="True" />
-
                                 </VerticalStackLayout>
-
-
                             </Grid>
-
-
-
                         </Frame>
-
-
-
                     </Grid>
-
-
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
     </Grid>
-
 </ContentPage>

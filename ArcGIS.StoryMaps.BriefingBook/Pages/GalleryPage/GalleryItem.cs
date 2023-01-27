@@ -12,7 +12,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
     public class GalleryItem : INotifyPropertyChanged
     {
         private PortalItem _portalItem;
-
         public PortalItem StoryMapPortalItem
         {
             get => _portalItem;
@@ -40,12 +39,9 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             set => SetProperty(ref _thumbnail, value);
         }
 
-
-
         private void RaisedOnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-           
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));          
         }
 
         /// <summary>
@@ -57,7 +53,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             {
                 return false;
             }
-
             property = value;
             this.RaisedOnPropertyChanged(propertyName);
             return true;
