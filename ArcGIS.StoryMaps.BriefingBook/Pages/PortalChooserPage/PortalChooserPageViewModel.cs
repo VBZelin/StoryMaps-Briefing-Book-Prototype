@@ -13,13 +13,17 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
     public class PortalChooserPageViewModel : INotifyPropertyChanged
     {
         // public
-        public IEnumerable<PortalInfo> PortalInfos { get; set; }
+        public IEnumerable<PortalInfo> PortalInfos { get; private set; }
 
-        public object CurrentSecuredPortal { private set; get; }
+        public object CurrentSecuredPortal { get; private set; }
+
+        public Uri CurrentPortalUrl { get; private set; }
+
+        public SignInType CurrentSignInType { get; private set; }
 
         public string Message => GetMessage();
 
-        public ICommand NextButtonClickedCommand { private set; get; }
+        public ICommand NextButtonClickedCommand { get; private set; }
 
         // private
         private readonly IEnumerable<PortalInfo> _savedPortalInfos;
@@ -38,9 +42,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 if (value != _inputUrl)
                 {
                     _inputUrl = !string.IsNullOrWhiteSpace(value) ? value.ToLower() : "";
-
-                    CurrentSecuredPortal = null;
-                    IsValidUrl = true;
 
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(Message));
@@ -96,7 +97,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 {
                     var pageParameters = new Dictionary<string, object>()
                     {
-                        ["SecuredPortal"] = CurrentSecuredPortal
+                        ["PortalUrl"] = CurrentPortalUrl,
+                        ["SignInType"] = CurrentSignInType
                     };
 
                     await Shell.Current.GoToAsync($"/{nameof(SignInPage)}", pageParameters);
@@ -119,6 +121,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         {
             IsCheckingUrl = true;
 
+            CurrentSecuredPortal = null;
+            CurrentPortalUrl = null;
+
+            IsValidUrl = false;
+
             var realUrl = Utility.GetRealPortalUrl(InputUrl);
 
             var isUrl = Utility.IsUrl(realUrl);
@@ -130,6 +137,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 if (securedPortal is not null)
                 {
                     CurrentSecuredPortal = securedPortal;
+                    CurrentPortalUrl = securedPortal.Uri;
 
                     IsValidUrl = true;
                 }

@@ -7,7 +7,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
 {
     public class ArcGISRuntimeService
     {
-        public PortalManager PortalManager { private set; get; }
+        public PortalManager PortalManager { get; private set; }
 
         public ArcGISRuntimeService() { }
 
@@ -15,14 +15,14 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
         {
             try
             {
+                portalUrl += "/sharing/rest";
+
                 ArcGISPortal securedPortal = await ArcGISPortal.CreateAsync(new Uri(portalUrl));
 
                 return securedPortal;
             }
             catch (Exception e)
             {
-                Utility.DebugLogObject(e);
-
                 return null;
             }
         }
