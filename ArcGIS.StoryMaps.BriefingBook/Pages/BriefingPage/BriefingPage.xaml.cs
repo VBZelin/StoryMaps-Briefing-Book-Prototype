@@ -31,7 +31,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             BriefingPageModel briefingPageModel = briefingPageViewModel.BriefingPageModel;
             BriefingPageContentModel briefingPageContentModel = briefingPageViewModel.BriefingPageContentModel;
 
-            CreateClassificationBannerSpace(briefingPageModel: briefingPageModel);
+            CreateClassificationBannerSpace(briefingPageModel: briefingPageModel, forTopBannerOtherwiseBottom: true, briefingPageContentModel: briefingPageContentModel);
+
             CreatePageHeader(briefingPageModel: briefingPageModel);
 
             CreateAndAddColumnDefinitions(briefingPageContentModel: briefingPageContentModel);
@@ -39,16 +40,21 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
 
             CreateLeftColmnBlocks(briefingPageContentModel: briefingPageContentModel);
             CreateRightColumnBlocks(briefingPageContentModel: briefingPageContentModel);
+
+            CreateClassificationBannerSpace(briefingPageModel: briefingPageModel, forTopBannerOtherwiseBottom: false, briefingPageContentModel: briefingPageContentModel);
         }
 
         /// <summary>
-        /// This method creates and adds the page header
+        /// This method creates and adds the top or bottom classification banner
         /// </summary>
-        private void CreateClassificationBannerSpace(BriefingPageModel briefingPageModel)
+        private void CreateClassificationBannerSpace(BriefingPageModel briefingPageModel, bool forTopBannerOtherwiseBottom, BriefingPageContentModel briefingPageContentModel)
         {
+            //If the verticalsplit is less than 1, then there are 2 rows, otherwise 1 row
+            int totalRows = (briefingPageContentModel.RowSplit < 100 ? 2 : 1) + 3;
+
             RowDefinition rd = new()
             {
-                Height = new GridLength(30)
+                Height = new GridLength(25)
             };
             briefingPageContent.RowDefinitions.Add(rd);
 
@@ -59,7 +65,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                         classification: briefingPageModel.Classification
                         ),
                     column: 0,
-                    row: 0
+                    row: forTopBannerOtherwiseBottom ? 0 : totalRows
                 );
         }
 
@@ -74,9 +80,12 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             {
                 BackgroundColor = GetClassificationColor(classification),
                 Margin = 0,
+                Padding = 0,
                 Content = new Label
                 {
                     Text = classification.ToString(),
+                    FontSize = 10,
+                    LineHeight = 25,
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center,
                     Padding = 0,
@@ -94,7 +103,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
         {
             RowDefinition rd = new()
             {
-                Height = new GridLength(100)
+                Height = new GridLength(50)
             };
             briefingPageContent.RowDefinitions.Add(rd);
 
@@ -116,6 +125,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
         {
             Frame f = new()
             {
+                Margin = 0,
+                Padding = new Thickness(10, 0, 10, 0),
                 Content = new Label
                 {
                     Text = header,
@@ -230,7 +241,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             //Create Column 1 blocks
             for (int leftBlock = 0; leftBlock < briefingPageContentModel.NumberLeftColumnBlocks; leftBlock++)
             {
-                var contentItem = briefingPageContentModel.PageContents.SingleOrDefault(content => content.ColumnPosition == 0 && content.RowPosition == leftBlock);
+                var contentItem = briefingPageContentModel.PageContents.SingleOrDefault(content => content.ColumnPosition == 0 && content.RowPosition == leftBlock, defaultValue: new ContentModel { ColumnPosition = 0, RowPosition = leftBlock + 2 });
 
                 briefingPageContent.Add(
                     view: CreateBlock(
@@ -254,7 +265,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             //Create Column 2 blocks
             for (int rightBlock = 0; rightBlock < briefingPageContentModel.NumberRightColumnBlocks; rightBlock++)
             {
-                var contentItem = briefingPageContentModel.PageContents.SingleOrDefault(content => content.ColumnPosition == 1 && content.RowPosition == rightBlock);
+                var contentItem = briefingPageContentModel.PageContents.SingleOrDefault(content => content.ColumnPosition == 1 && content.RowPosition == rightBlock, defaultValue: new ContentModel { ColumnPosition = 1, RowPosition = rightBlock + 2 });
 
                 briefingPageContent.Add(
                     view: CreateBlock(

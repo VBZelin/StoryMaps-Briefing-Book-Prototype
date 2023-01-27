@@ -16,14 +16,15 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                 new TextContentModel { ColumnPosition = 0, RowPosition = 0 },
                 new MapContentModel { ColumnPosition = 0, RowPosition = 1 },
                 new MediaContentModel { ColumnPosition = 1, RowPosition = 0 },
+                new TextContentModel { ColumnPosition = 1, RowPosition = 1 },
             };
 
             BriefingPageContentModel briefingPageContentModel = new()
             {
-                ColumnSplit = 50,
+                ColumnSplit = 60,
                 RowSplit = 50,
                 NumberLeftColumnBlocks = 2,
-                NumberRightColumnBlocks = 1,
+                NumberRightColumnBlocks = 2,
                 PageContents = pageContents,
             };
 
@@ -31,7 +32,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             {
                 PageTitle = "Briefing Page 1",
                 PageNumber = 1,
-                Classification = BriefingPageModel.ClassificationTypes.Classified
+                Classification = BriefingPageModel.ClassificationTypes.Unclassified
             };
 
             Dictionary<string, object> pageParameters = new()

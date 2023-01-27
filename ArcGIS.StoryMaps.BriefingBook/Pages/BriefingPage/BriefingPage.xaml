@@ -7,8 +7,7 @@
         <Grid x:Name="briefingPageContent"
                   ColumnSpacing="2"
                   RowSpacing="2"
-                  Padding="10"
-                  VerticalOptions="FillAndExpand">
+                  Padding="10">
         </Grid>
             
 </ContentPage>

@@ -4,11 +4,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.Models
 {
     public class BriefingPageContentModel
     {
-        public int ColumnSplit { get; set; }
-        public int RowSplit { get; set; }
-        public int NumberLeftColumnBlocks { get; set; }
-        public int NumberRightColumnBlocks { get; set; }
-        public ContentModel[] PageContents { get; set; }
+        required public int ColumnSplit { get; set; }
+        required public int RowSplit { get; set; }
+        required public int NumberLeftColumnBlocks { get; set; }
+        required public int NumberRightColumnBlocks { get; set; }
+        required public ContentModel[] PageContents { get; set; }
     }
 }
 
