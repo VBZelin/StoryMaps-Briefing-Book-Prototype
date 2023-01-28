@@ -1,7 +1,7 @@
 ﻿using System;
-using Esri.ArcGISRuntime.Portal;
 using ArcGIS.StoryMaps.BriefingBook.Helpers;
 using ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime;
+using Esri.ArcGISRuntime.Portal;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Services
 {

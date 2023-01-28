@@ -33,6 +33,8 @@
         <ListView
             Grid.Row="2"
             HasUnevenRows="True"
+            BackgroundColor="Transparent"
+            SeparatorVisibility="None"
             ItemsSource="{Binding PortalInfoItems}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -42,26 +44,28 @@
                                 <SwipeItems>
                                     <SwipeItem
                                         Text="{x:Static assets:StringSources.DELETE}"
-                                        IconImageSource="{x:Static assets:ImageSources.DELETE}"
                                         BackgroundColor="Red"
                                         Invoked="OnDeleteSwipeItemInvoked" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <StackLayout
+                            <Frame
+                                CornerRadius="20">
+                                <StackLayout
                                     Grid.Column="0"
                                     Margin="10"
                                     VerticalOptions="Center">
-                                <Label
+                                    <Label
                                         Text="{Binding Name}"
                                         FontSize="Caption"
                                         VerticalTextAlignment="Center"
                                         MaxLines="1" />
-                                <Label
+                                    <Label
                                         Text="{Binding Url}"
                                         FontSize="Caption"
                                         VerticalTextAlignment="Center"
                                         MaxLines="2" />
-                            </StackLayout>
+                                </StackLayout>
+                            </Frame>
                         </SwipeView>
                     </ViewCell>
                 </DataTemplate>

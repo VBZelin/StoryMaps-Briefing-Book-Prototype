@@ -1,27 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ArcGIS.StoryMaps.BriefingBook.Assets;
 using ArcGIS.StoryMaps.BriefingBook.Services;
 
 namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 {
     public class SignInPageViewModel : INotifyPropertyChanged
     {
-        /// <summary>
-        /// All data bindings
-        /// </summary>
-        private SignInType _signInType = SignInType.Unknown;
-        public SignInType SignInType
-        {
-            get { return _signInType; }
-
-            set
-            {
-                SetProperty(ref _signInType, value);
-            }
-        }
-
         /// <summary>
         /// Parameters
         /// </summary>

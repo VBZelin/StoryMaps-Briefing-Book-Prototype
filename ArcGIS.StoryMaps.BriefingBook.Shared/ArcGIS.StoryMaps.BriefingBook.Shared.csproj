@@ -23,17 +23,17 @@
 	  <None Remove="CustomComponents\ArcGISRuntime\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="CustomComponents\UI\ImageWithIndicator\" />
-	  <None Remove="CustomComponents\ArcGISRuntime\PortalManager\" />
+	  <None Remove="Esri.ArcGISRuntime.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="CustomComponents\" />
 	  <Folder Include="CustomComponents\UI\" />
 	  <Folder Include="CustomComponents\ArcGISRuntime\" />
 	  <Folder Include="CustomComponents\UI\ImageWithIndicator\" />
-	  <Folder Include="CustomComponents\ArcGISRuntime\PortalManager\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	  <PackageReference Include="Esri.ArcGISRuntime.Maui" Version="200.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="CustomComponents\UI\ImageWithIndicator\ImageWithIndicator.xaml">

@@ -110,7 +110,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
                     var pageParameters = new Dictionary<string, object>()
                     {
-                        ["PortalUrl"] = securedPortalUrl
+                        ["PortalUrl"] = securedPortalUrl,
+                        ["SignInType"] = SignInType.OAuth
                     };
 
                     await Shell.Current.GoToAsync($"/{nameof(SignInPage)}", pageParameters);
