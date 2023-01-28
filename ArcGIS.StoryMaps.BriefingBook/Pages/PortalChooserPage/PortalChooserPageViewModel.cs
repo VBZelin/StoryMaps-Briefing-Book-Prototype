@@ -18,13 +18,9 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         /// </summary>
         public ArcGISPortal CurrentSecuredPortal { get; private set; }
 
-        public SignInType CurrentSignInType { get; private set; }
-
         public string Message => GetMessage();
 
         public ICommand NextButtonClickedCommand { get; private set; }
-
-        private readonly IEnumerable<PortalInfoItem> _savedPortalInfoItems;
 
         private SQLiteDatabaseService _sqlDatabaseService;
         private ArcGISRuntimeService _arcGISRuntimeService;
@@ -110,12 +106,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                         Json = "{}"
                     };
 
-                    await _sqlDatabaseService.AddPortalInfoItemAsync(portalInfoItem);
+                    await AddPortalInfoItem(portalInfoItem);
 
                     var pageParameters = new Dictionary<string, object>()
                     {
-                        ["PortalUrl"] = securedPortalUrl,
-                        ["SignInType"] = CurrentSignInType
+                        ["PortalUrl"] = securedPortalUrl
                     };
 
                     await Shell.Current.GoToAsync($"/{nameof(SignInPage)}", pageParameters);
@@ -125,6 +120,20 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                     return IsValidUrl;
                 }
                 );
+        }
+
+        public async Task AddPortalInfoItem(PortalInfoItem portalInfoItem)
+        {
+            await _sqlDatabaseService.AddPortalInfoItemAsync(portalInfoItem);
+
+            await FilterPortalInfoItems();
+        }
+
+        public async Task DeletePortalInfoItem(PortalInfoItem portalInfoItem)
+        {
+            await _sqlDatabaseService.DeletePortalInfoItemAsync(portalInfoItem);
+
+            await FilterPortalInfoItems();
         }
 
         public async Task FilterPortalInfoItems()

@@ -47,6 +47,7 @@ namespace ArcGIS.StoryMaps.BriefingBook
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<PortalChooserPage>();
+            mauiAppBuilder.Services.AddSingleton<SignInPage>();
 
             return mauiAppBuilder;
         }

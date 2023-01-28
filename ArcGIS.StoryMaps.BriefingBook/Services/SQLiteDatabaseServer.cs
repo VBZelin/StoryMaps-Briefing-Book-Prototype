@@ -58,8 +58,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
 
             if (item is not null)
                 return await Database.UpdateAsync(portalInfoItem);
-            else
-                return await Database.InsertAsync(portalInfoItem);
+
+            return await Database.InsertAsync(portalInfoItem);
         }
 
         public async Task<int> DeletePortalInfoItemAsync(PortalInfoItem portalInfoItem)

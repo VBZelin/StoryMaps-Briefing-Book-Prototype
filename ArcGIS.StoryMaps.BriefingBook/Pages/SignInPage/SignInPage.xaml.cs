@@ -1,18 +1,26 @@
-﻿using ArcGIS.StoryMaps.BriefingBook.Assets;
+﻿using ArcGIS.StoryMaps.BriefingBook.ViewModels;
+using ArcGIS.StoryMaps.BriefingBook.Services;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
     [QueryProperty(nameof(PortalUrl), nameof(PortalUrl))]
-    [QueryProperty(nameof(SignInType), nameof(SignInType))]
     public partial class SignInPage : ContentPage
     {
         public string PortalUrl { get; set; }
 
-        public SignInType SignInType { get; set; }
+        private SignInPageViewModel _viewModel;
 
-        public SignInPage()
+        private ArcGISRuntimeService _arcGISRuntimeService;
+
+        public SignInPage(ArcGISRuntimeService arcGISRuntimeService)
         {
             InitializeComponent();
+
+            _arcGISRuntimeService = arcGISRuntimeService;
+
+            _viewModel = new SignInPageViewModel(_arcGISRuntimeService);
+
+            BindingContext = _viewModel;
         }
 
         protected override void OnAppearing()
@@ -22,7 +30,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             Init();
         }
 
-        public void Init() { }
+        public void Init()
+        {
+
+        }
 
         private async void OnNextButtonClicked(System.Object sender, System.EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using ArcGIS.StoryMaps.BriefingBook.ViewModels;
+﻿using ArcGIS.StoryMaps.BriefingBook.Models;
+using ArcGIS.StoryMaps.BriefingBook.ViewModels;
 using ArcGIS.StoryMaps.BriefingBook.Services;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Pages
@@ -39,8 +40,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
         {
         }
 
-        private void OnDeleteSwipeItemInvoked(System.Object sender, System.EventArgs e)
+        private async void OnDeleteSwipeItemInvoked(System.Object sender, System.EventArgs e)
         {
+            var item = sender as SwipeItem;
+
+            var portalInfoItem = item.BindingContext as PortalInfoItem;
+
+            await _viewModel.DeletePortalInfoItem(portalInfoItem);
         }
     }
 }
