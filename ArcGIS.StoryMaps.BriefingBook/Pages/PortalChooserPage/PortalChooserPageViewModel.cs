@@ -105,7 +105,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                     var portalInfoItem = new PortalInfoItem
                     {
                         Name = CurrentSecuredPortal.PortalInfo.PortalName,
-                        Url = securedPortalUrl,
+                        Url = securedPortalUrl.Replace("/sharing/rest", ""),
                         UnixTime = DateTime.UtcNow,
                         Json = "{}"
                     };

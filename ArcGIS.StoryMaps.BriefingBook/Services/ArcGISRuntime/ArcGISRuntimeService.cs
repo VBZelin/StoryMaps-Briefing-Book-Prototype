@@ -15,7 +15,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
         {
             try
             {
-                portalUrl += "/sharing/rest";
+                if (portalUrl.EndsWith("/"))
+                    portalUrl += "sharing/rest";
+                else
+                    portalUrl += "/sharing/rest";
 
                 ArcGISPortal securedPortal = await ArcGISPortal.CreateAsync(new Uri(portalUrl));
 
