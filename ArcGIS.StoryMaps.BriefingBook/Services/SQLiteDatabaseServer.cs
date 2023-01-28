@@ -29,44 +29,44 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
 
             Database = new SQLiteAsyncConnection(DatabasePath, Flags);
 
-            var result = await Database.CreateTableAsync<PortalInfo>();
+            var result = await Database.CreateTableAsync<PortalInfoItem>();
 
             // Add tables in here
         }
 
-        public async Task<List<PortalInfo>> GetPortalInfosSortedByUnixTimeAsync(string inputUrl)
+        public async Task<List<PortalInfoItem>> GetPortalInfoItemsSortedByUnixTimeAsync(string inputUrl)
         {
             await Init();
 
-            var query = $"SELECT * FROM PortalInfo WHERE Url LIKE '%{inputUrl}%' ORDER BY UnixTime DESC";
+            var query = $"SELECT * FROM PortalInfoItem WHERE Url LIKE '%{inputUrl}%' ORDER BY UnixTime DESC";
 
-            return await Database.QueryAsync<PortalInfo>(query);
+            return await Database.QueryAsync<PortalInfoItem>(query);
         }
 
-        public async Task<PortalInfo> GetPortalInfoByUrlAsync(string url)
+        public async Task<PortalInfoItem> GetPortalInfoItemByUrlAsync(string url)
         {
             await Init();
 
-            return await Database.Table<PortalInfo>().Where(item => item.Url == url).FirstOrDefaultAsync();
+            return await Database.Table<PortalInfoItem>().Where(item => item.Url == url).FirstOrDefaultAsync();
         }
 
-        public async Task<int> AddPortalInfoAsync(PortalInfo portalInfo)
+        public async Task<int> AddPortalInfoItemAsync(PortalInfoItem portalInfoItem)
         {
             await Init();
 
-            var item = await GetPortalInfoByUrlAsync(portalInfo.Url);
+            var item = await GetPortalInfoItemByUrlAsync(portalInfoItem.Url);
 
             if (item is not null)
-                return await Database.UpdateAsync(portalInfo);
+                return await Database.UpdateAsync(portalInfoItem);
             else
-                return await Database.InsertAsync(portalInfo);
+                return await Database.InsertAsync(portalInfoItem);
         }
 
-        public async Task<int> DeletePortalInfoAsync(PortalInfo portalInfo)
+        public async Task<int> DeletePortalInfoItemAsync(PortalInfoItem portalInfoItem)
         {
             await Init();
 
-            return await Database.DeleteAsync(portalInfo);
+            return await Database.DeleteAsync(portalInfoItem);
         }
     }
 }

@@ -26,12 +26,12 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
         {
             base.OnAppearing();
 
-            await _viewModel.FilterPortalInfos();
+            await _viewModel.FilterPortalInfoItems();
         }
 
         private async void OnEntryTextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
         {
-            await _viewModel.FilterPortalInfos();
+            await _viewModel.FilterPortalInfoItems();
             await _viewModel.ValidateUrl();
         }
 

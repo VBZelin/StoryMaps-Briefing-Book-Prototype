@@ -7,6 +7,7 @@ using ArcGIS.StoryMaps.BriefingBook.Models;
 using ArcGIS.StoryMaps.BriefingBook.Services;
 using ArcGIS.StoryMaps.BriefingBook.Helpers;
 using ArcGIS.StoryMaps.BriefingBook.Pages;
+using Esri.ArcGISRuntime.Portal;
 
 namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 {
@@ -15,7 +16,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         /// <summary>
         /// Parameters
         /// </summary>
-        public Esri.ArcGISRuntime.Portal.ArcGISPortal CurrentSecuredPortal { get; private set; }
+        public ArcGISPortal CurrentSecuredPortal { get; private set; }
 
         public SignInType CurrentSignInType { get; private set; }
 
@@ -23,7 +24,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
         public ICommand NextButtonClickedCommand { get; private set; }
 
-        private readonly IEnumerable<PortalInfo> _savedPortalInfos;
+        private readonly IEnumerable<PortalInfoItem> _savedPortalInfoItems;
 
         private SQLiteDatabaseService _sqlDatabaseService;
         private ArcGISRuntimeService _arcGISRuntimeService;
@@ -31,14 +32,14 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         /// <summary>
         /// All data bindings
         /// </summary>
-        private List<PortalInfo> _portalInfos;
-        public List<PortalInfo> PortalInfos
+        private List<PortalInfoItem> _portalInfoItems;
+        public List<PortalInfoItem> PortalInfoItems
         {
-            get { return _portalInfos; }
+            get { return _portalInfoItems; }
 
             set
             {
-                SetProperty(ref _portalInfos, value);
+                SetProperty(ref _portalInfoItems, value);
             }
         }
 
@@ -101,7 +102,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 {
                     var securedPortalUrl = CurrentSecuredPortal.Uri.ToString();
 
-                    var portalInfo = new PortalInfo
+                    var portalInfoItem = new PortalInfoItem
                     {
                         Name = CurrentSecuredPortal.PortalInfo.PortalName,
                         Url = securedPortalUrl,
@@ -109,7 +110,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                         Json = "{}"
                     };
 
-                    await _sqlDatabaseService.AddPortalInfoAsync(portalInfo);
+                    await _sqlDatabaseService.AddPortalInfoItemAsync(portalInfoItem);
 
                     var pageParameters = new Dictionary<string, object>()
                     {
@@ -126,11 +127,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 );
         }
 
-        public async Task FilterPortalInfos()
+        public async Task FilterPortalInfoItems()
         {
-            var portalInfos = await _sqlDatabaseService.GetPortalInfosSortedByUnixTimeAsync(InputUrl);
+            var portalInfoItems = await _sqlDatabaseService.GetPortalInfoItemsSortedByUnixTimeAsync(InputUrl);
 
-            PortalInfos = portalInfos;
+            PortalInfoItems = portalInfoItems;
         }
 
         public async Task ValidateUrl()
