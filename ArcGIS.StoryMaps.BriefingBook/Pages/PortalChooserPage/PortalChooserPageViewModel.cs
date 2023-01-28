@@ -21,6 +21,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         public string Message => GetMessage();
 
         public ICommand NextButtonClickedCommand { get; private set; }
+        public ICommand DeleteClickedCommand { get; private set; }
+        public ICommand RefreshCommand { get; private set; }
 
         private SQLiteDatabaseService _sqlDatabaseService;
         private ArcGISRuntimeService _arcGISRuntimeService;
@@ -88,6 +90,20 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             }
         }
 
+        private bool _isBusy = false;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+
+            set
+            {
+                if (value != _isBusy)
+                {
+                    SetProperty(ref _isBusy, value);
+                }
+            }
+        }
+
         public PortalChooserPageViewModel(SQLiteDatabaseService sqlDatabaseService, ArcGISRuntimeService arcGISRuntimeService)
         {
             _sqlDatabaseService = sqlDatabaseService;
@@ -121,6 +137,17 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                     return IsValidUrl;
                 }
                 );
+
+            DeleteClickedCommand = new Command<PortalInfoItem>(async (portalInfoItem) => await DeletePortalInfoItem(portalInfoItem));
+
+            RefreshCommand = new Command(async () =>
+            {
+                IsBusy = true;
+
+                await FilterPortalInfoItems();
+
+                IsBusy = false;
+            });
         }
 
         public async Task AddPortalInfoItem(PortalInfoItem portalInfoItem)

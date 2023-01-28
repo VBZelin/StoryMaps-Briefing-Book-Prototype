@@ -48,6 +48,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                 case SignInType.OAuth:
                     try
                     {
+                        ArcGISLoginPrompt.PortalUrl = PortalUrl;
                         ArcGISLoginPrompt.SetChallengeHandler();
 
                         ArcGISPortal arcgisPortal = await ArcGISPortal.CreateAsync(new Uri(PortalUrl), true);

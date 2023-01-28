@@ -20,7 +20,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
 {
     public static class ArcGISLoginPrompt
     {
-        private const string ArcGISOnlineUrl = "https://www.arcgis.com/sharing/rest";
+        public static string PortalUrl = "https://www.arcgis.com/sharing/rest";
 
         // - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
         public const string AppClientId = @"whZcZNUK05QuM6Rd";
@@ -47,7 +47,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
                     },
 
                     // Indicate the url (portal) to authenticate with (ArcGIS Online)
-                    ServiceUri = new Uri(ArcGISOnlineUrl)
+                    ServiceUri = new Uri(PortalUrl)
                 };
 
                 // Call GetCredentialAsync on the AuthenticationManager to invoke the challenge handler
@@ -69,7 +69,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
         public static void SetChallengeHandler()
         {
             // Define the server information for ArcGIS Online
-            ServerInfo portalServerInfo = new ServerInfo(new Uri(ArcGISOnlineUrl))
+            ServerInfo portalServerInfo = new ServerInfo(new Uri(PortalUrl))
             {
                 TokenAuthenticationType = TokenAuthenticationType.OAuthAuthorizationCode,
                 OAuthClientInfo = new OAuthClientInfo(AppClientId, new Uri(OAuthRedirectUrl))

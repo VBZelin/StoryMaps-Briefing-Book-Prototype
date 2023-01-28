@@ -40,13 +40,19 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
         {
         }
 
-        private async void OnDeleteSwipeItemInvoked(System.Object sender, System.EventArgs e)
+        private void OnListItemSelected(System.Object sender, Microsoft.Maui.Controls.SelectedItemChangedEventArgs e)
         {
-            var item = sender as SwipeItem;
+            var portalInfoItem = ((ListView)sender).SelectedItem as PortalInfoItem;
 
-            var portalInfoItem = item.BindingContext as PortalInfoItem;
+            if (portalInfoItem is null)
+                return;
 
-            await _viewModel.DeletePortalInfoItem(portalInfoItem);
+            Entry.Text = portalInfoItem.Url;
+        }
+
+        private void OnListItemTapped(System.Object sender, Microsoft.Maui.Controls.ItemTappedEventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }
