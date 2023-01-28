@@ -12,9 +12,9 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 {
     public class PortalChooserPageViewModel : INotifyPropertyChanged
     {
-        // public
-        public IEnumerable<PortalInfo> PortalInfos { get; private set; }
-
+        /// <summary>
+        /// Parameters
+        /// </summary>
         public Esri.ArcGISRuntime.Portal.ArcGISPortal CurrentSecuredPortal { get; private set; }
 
         public SignInType CurrentSignInType { get; private set; }
@@ -23,14 +23,26 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
         public ICommand NextButtonClickedCommand { get; private set; }
 
-        // private
         private readonly IEnumerable<PortalInfo> _savedPortalInfos;
 
         private SQLiteDatabaseService _sqlDatabaseService;
         private ArcGISRuntimeService _arcGISRuntimeService;
 
-        private string _inputUrl = "";
+        /// <summary>
+        /// All data bindings
+        /// </summary>
+        private List<PortalInfo> _portalInfos;
+        public List<PortalInfo> PortalInfos
+        {
+            get { return _portalInfos; }
 
+            set
+            {
+                SetProperty(ref _portalInfos, value);
+            }
+        }
+
+        private string _inputUrl = "";
         public string InputUrl
         {
             get { return _inputUrl; }
@@ -39,16 +51,15 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             {
                 if (value != _inputUrl)
                 {
-                    _inputUrl = !string.IsNullOrWhiteSpace(value) ? value.ToLower() : "";
+                    value = !string.IsNullOrWhiteSpace(value) ? value.ToLower() : "";
 
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(Message));
+                    SetProperty(ref _inputUrl, value);
+                    RaisedOnPropertyChanged(nameof(Message));
                 }
             }
         }
 
         private bool _isCheckingUrl = false;
-
         public bool IsCheckingUrl
         {
             get { return _isCheckingUrl; }
@@ -57,16 +68,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             {
                 if (value != _isCheckingUrl)
                 {
-                    _isCheckingUrl = value;
-
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(Message));
+                    SetProperty(ref _isCheckingUrl, value);
+                    RaisedOnPropertyChanged(nameof(Message));
                 }
             }
         }
 
         private bool _isValidUrl = false;
-
         public bool IsValidUrl
         {
             get { return _isValidUrl; }
@@ -75,12 +83,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             {
                 if (value != _isValidUrl)
                 {
-                    _isValidUrl = value;
+                    SetProperty(ref _isValidUrl, value);
+                    RaisedOnPropertyChanged(nameof(Message));
 
                     RefreshCanExecutes();
-
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(Message));
                 }
             }
         }
@@ -175,7 +181,21 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected bool SetProperty<T>(ref T property, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(property, value))
+            {
+                return false;
+            }
+
+            property = value;
+
+            this.RaisedOnPropertyChanged(propertyName);
+
+            return true;
+        }
+
+        private void RaisedOnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
