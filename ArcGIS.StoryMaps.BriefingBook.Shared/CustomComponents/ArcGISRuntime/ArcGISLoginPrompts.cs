@@ -23,7 +23,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
         public static string PortalUrl = "https://www.arcgis.com/sharing/rest";
 
         // - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
-        public const string AppClientId = @"whZcZNUK05QuM6Rd";
+        private const string AppClientId = @"whZcZNUK05QuM6Rd";
 
         // - An optional client secret for the app (only needed for the OAuthClientCredentials authorization type).
         private const string ClientSecret = "";
