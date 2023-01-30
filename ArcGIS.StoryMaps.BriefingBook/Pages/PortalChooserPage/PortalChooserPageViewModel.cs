@@ -131,7 +131,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                         ["SignInType"] = SignInType.OAuth
                     };
 
-                    await Shell.Current.GoToAsync($"/{nameof(SignInPage)}", pageParameters);
+                    await Shell.Current.GoToAsync($"{nameof(SignInPage)}", pageParameters);
                 },
                 canExecute: () =>
                 {
@@ -186,7 +186,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
             if (isUrl)
             {
-                var securedPortal = await _arcGISRuntimeService.PortalManager.GetPortalIfUrlIsValid(realUrl);
+                var securedPortal = await _arcGISRuntimeService.ArcGISPortalManager.GetPortalIfUrlIsValid(realUrl);
 
                 if (securedPortal is not null)
                 {

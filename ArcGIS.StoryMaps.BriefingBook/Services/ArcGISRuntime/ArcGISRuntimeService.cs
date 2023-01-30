@@ -5,11 +5,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.Services
 {
     public class ArcGISRuntimeService
     {
-        public PortalManager PortalManager { get; private set; }
+        public ArcGISPortalManager ArcGISPortalManager { get; private set; }
 
         public ArcGISRuntimeService()
         {
-            PortalManager = new PortalManager();
+            ArcGISPortalManager = new ArcGISPortalManager();
         }
     }
 }

@@ -43,6 +43,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
 
         public async Task DisplaySignInUI()
         {
+            Root.Title = "Sign in with ArcGIS Online";
+
             switch (SignInType)
             {
                 case SignInType.OAuth:
@@ -53,7 +55,18 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                         ArcGISLoginPrompt.ServiceUrl = serviceUrl;
                         ArcGISLoginPrompt.SetChallengeHandler();
 
-                        ArcGISPortal arcgisPortal = await ArcGISPortal.CreateAsync(new Uri(serviceUrl), true);
+                        ArcGISPortal securedPortal = await ArcGISPortal.CreateAsync(new Uri(serviceUrl), true);
+
+                        if (securedPortal is not null)
+                        {
+                            _arcGISRuntimeService.ArcGISPortalManager.SetSignedInPortal(securedPortal);
+
+                            await Shell.Current.GoToAsync($"{nameof(GalleryPage)}");
+                        }
+                        else
+                        {
+                            await Shell.Current.GoToAsync("..");
+                        }
                     }
                     catch (Exception e)
                     {
@@ -71,11 +84,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                 default:
                     return;
             }
-        }
-
-        private async void OnNextButtonClicked(System.Object sender, System.EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"/{nameof(GalleryPage)}");
         }
     }
 }

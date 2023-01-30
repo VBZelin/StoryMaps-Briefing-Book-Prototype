@@ -26,7 +26,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
         public static string ClientSecret = "";
 
         // - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
-        private static readonly string AppClientId = @"whZcZNUK05QuM6Rd";
+        private static readonly string AppClientId = @"NDiGU6O6UiscRDPw";
 
         // - A URL for redirecting after a successful authorization (this must be a URL configured with the app).
         private static readonly string OAuthRedirectUrl = @"maui-ags-app://auth";
@@ -139,6 +139,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
         public async Task<IDictionary<string, string>> AuthorizeAsync(Uri serviceUri, Uri authorizeUri, Uri callbackUri)
         {
             var result = await WebAuthenticator.AuthenticateAsync(authorizeUri, callbackUri);
+
             return result.Properties;
         }
 #elif WINDOWS
