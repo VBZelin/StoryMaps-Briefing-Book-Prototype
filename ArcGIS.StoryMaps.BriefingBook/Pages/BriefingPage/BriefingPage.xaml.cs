@@ -3,7 +3,6 @@ using ArcGIS.StoryMaps.BriefingBook.ViewModels;
 using ArcGIS.StoryMaps.BriefingBook.Models;
 using ArcGIS.StoryMaps.BriefingBook.Views;
 
-
 namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
     public partial class BriefingPage : ContentPage
@@ -168,10 +167,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             {
                 case ClassificationType.Unknown:
                     return Colors.Yellow;
+
                 case ClassificationType.Classified:
                     return Colors.Red;
+
                 case ClassificationType.Unclassified:
                     return Colors.LightGreen;
+
                 default:
                     return Colors.Yellow;
             }
