@@ -57,7 +57,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
 
                         ArcGISPortal securedPortal = await ArcGISPortal.CreateAsync(new Uri(serviceUrl), true);
 
-                        if (securedPortal is not null)
+                        if (securedPortal.User is not null)
                         {
                             _arcGISRuntimeService.ArcGISPortalManager.SetSignedInPortal(securedPortal);
 
