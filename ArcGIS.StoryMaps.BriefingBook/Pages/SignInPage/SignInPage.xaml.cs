@@ -48,10 +48,12 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                 case SignInType.OAuth:
                     try
                     {
-                        ArcGISLoginPrompt.PortalUrl = PortalUrl;
+                        var serviceUrl = PortalUrl + "/sharing/rest";
+
+                        ArcGISLoginPrompt.ServiceUrl = serviceUrl;
                         ArcGISLoginPrompt.SetChallengeHandler();
 
-                        ArcGISPortal arcgisPortal = await ArcGISPortal.CreateAsync(new Uri(PortalUrl), true);
+                        ArcGISPortal arcgisPortal = await ArcGISPortal.CreateAsync(new Uri(serviceUrl), true);
                     }
                     catch (Exception e)
                     {

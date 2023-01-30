@@ -20,16 +20,16 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
 {
     public static class ArcGISLoginPrompt
     {
-        public static string PortalUrl = "https://www.arcgis.com/sharing/rest";
-
-        // - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
-        private const string AppClientId = @"whZcZNUK05QuM6Rd";
+        public static string ServiceUrl = "https://www.arcgis.com/sharing/rest";
 
         // - An optional client secret for the app (only needed for the OAuthClientCredentials authorization type).
-        private const string ClientSecret = "";
+        public static string ClientSecret = "";
+
+        // - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
+        private static readonly string AppClientId = @"whZcZNUK05QuM6Rd";
 
         // - A URL for redirecting after a successful authorization (this must be a URL configured with the app).
-        private const string OAuthRedirectUrl = @"maui-ags-app://auth";
+        private static readonly string OAuthRedirectUrl = @"maui-ags-app://auth";
 
         public static async Task<bool> EnsureAGOLCredentialAsync()
         {
@@ -47,7 +47,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
                     },
 
                     // Indicate the url (portal) to authenticate with (ArcGIS Online)
-                    ServiceUri = new Uri(PortalUrl)
+                    ServiceUri = new Uri(ServiceUrl)
                 };
 
                 // Call GetCredentialAsync on the AuthenticationManager to invoke the challenge handler
@@ -69,7 +69,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
         public static void SetChallengeHandler()
         {
             // Define the server information for ArcGIS Online
-            ServerInfo portalServerInfo = new ServerInfo(new Uri(PortalUrl))
+            ServerInfo portalServerInfo = new ServerInfo(new Uri(ServiceUrl))
             {
                 TokenAuthenticationType = TokenAuthenticationType.OAuthAuthorizationCode,
                 OAuthClientInfo = new OAuthClientInfo(AppClientId, new Uri(OAuthRedirectUrl))

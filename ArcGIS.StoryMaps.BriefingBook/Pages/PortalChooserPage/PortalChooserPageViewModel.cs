@@ -112,12 +112,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             NextButtonClickedCommand = new Command(
                 execute: async () =>
                 {
-                    var securedPortalUrl = CurrentSecuredPortal.Uri.ToString();
+                    // Remove "/sharing/rest" before adding to the database
+                    var portalUrl = CurrentSecuredPortal.Uri.ToString().Replace("/sharing/rest", "");
 
                     var portalInfoItem = new PortalInfoItem
                     {
                         Name = CurrentSecuredPortal.PortalInfo.PortalName,
-                        Url = securedPortalUrl.Replace("/sharing/rest", ""),
+                        Url = portalUrl,
                         UnixTime = DateTime.UtcNow,
                         Json = "{}"
                     };
@@ -126,7 +127,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
                     var pageParameters = new Dictionary<string, object>()
                     {
-                        ["PortalUrl"] = securedPortalUrl,
+                        ["PortalUrl"] = portalUrl,
                         ["SignInType"] = SignInType.OAuth
                     };
 
@@ -185,7 +186,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
             if (isUrl)
             {
-                var securedPortal = await _arcGISRuntimeService.GetPortalIfUrlIsValid(realUrl);
+                var securedPortal = await _arcGISRuntimeService.PortalManager.GetPortalIfUrlIsValid(realUrl);
 
                 if (securedPortal is not null)
                 {
