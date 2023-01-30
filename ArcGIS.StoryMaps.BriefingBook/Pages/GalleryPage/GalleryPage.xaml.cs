@@ -1,6 +1,6 @@
-﻿using ArcGIS.StoryMaps.BriefingBook.Models;
 using ArcGIS.StoryMaps.BriefingBook.Assets;
-﻿using ArcGIS.StoryMaps.BriefingBook.Services;
+using ArcGIS.StoryMaps.BriefingBook.Models;
+using ArcGIS.StoryMaps.BriefingBook.Services;
 using ArcGIS.StoryMaps.BriefingBook.ViewModels;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Pages

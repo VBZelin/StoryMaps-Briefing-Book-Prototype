@@ -6,28 +6,28 @@
 	xmlns:assets="clr-namespace:ArcGIS.StoryMaps.BriefingBook.Assets"
     x:Class="ArcGIS.StoryMaps.BriefingBook.Pages.LandingPage"
     Shell.NavBarIsVisible="False">
-	<ContentPage.BindingContext>
-		<viewModels:LandingPageViewModel />
-	</ContentPage.BindingContext>
-	<Grid Margin="10">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<Label Grid.Row="0"
+    <ContentPage.BindingContext>
+        <viewModels:LandingPageViewModel />
+    </ContentPage.BindingContext>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0"
                      Margin="50"
                      Text="{x:Static assets:StringSources.APP_TITLE}"
                      FontSize="Title"
                      HorizontalTextAlignment="Center"
                      VerticalTextAlignment="Center" />
-		<Button Grid.Row="2"
+        <Button Grid.Row="2"
                        Margin="50"
 					   MaximumWidthRequest="256"
                        Text="{x:Static assets:StringSources.SIGN_IN}"
                        Clicked="OnSignInButtonClicked" />
-	</Grid>
+    </Grid>
 </ContentPage>
