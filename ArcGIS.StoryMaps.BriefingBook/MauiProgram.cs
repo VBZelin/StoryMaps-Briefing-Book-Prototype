@@ -41,6 +41,8 @@ namespace ArcGIS.StoryMaps.BriefingBook
 
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
+            mauiAppBuilder.Services.AddTransient<BriefingPageViewModel>();
+
             return mauiAppBuilder;
         }
 
@@ -49,6 +51,7 @@ namespace ArcGIS.StoryMaps.BriefingBook
             mauiAppBuilder.Services.AddSingleton<PortalChooserPage>();
             mauiAppBuilder.Services.AddSingleton<SignInPage>();
             mauiAppBuilder.Services.AddSingleton<GalleryPage>();
+            mauiAppBuilder.Services.AddTransient<BriefingPage>();
 
             return mauiAppBuilder;
         }

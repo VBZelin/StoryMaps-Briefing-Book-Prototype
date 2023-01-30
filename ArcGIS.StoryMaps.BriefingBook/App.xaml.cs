@@ -20,6 +20,8 @@ namespace ArcGIS.StoryMaps.BriefingBook
             Routing.RegisterRoute(nameof(PortalChooserPage), typeof(PortalChooserPage));
             Routing.RegisterRoute(nameof(SignInPage), typeof(SignInPage));
             Routing.RegisterRoute(nameof(GalleryPage), typeof(GalleryPage));
+            Routing.RegisterRoute(nameof(LandingPage), typeof(LandingPage));
+            Routing.RegisterRoute(nameof(BriefingPage), typeof(BriefingPage));
         }
 
         private void ModifyUI()
