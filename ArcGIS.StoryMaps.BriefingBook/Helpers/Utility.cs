@@ -6,7 +6,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
 {
     public static class Utility
     {
-        // Convert url to portal url starts with 'https://'
+        /// <summary>
+        /// Convert url to portal url starts with 'https://'
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>
+        /// (string)PortalUrl
+        /// </returns>
         public static string GetRealPortalUrl(string text)
         {
             var temp = Uri.EscapeDataString(text.ToLower());
@@ -22,7 +28,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
             return url;
         }
 
-        // Check if it is a valid url
+        /// <summary>
+        /// Check if it is a valid url
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>
+        /// (bool)IsUrl
+        /// </returns>
         public static bool IsUrl(string text)
         {
             Regex regex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
@@ -32,7 +44,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
             return matchCollection.Count > 0;
         }
 
-        // Convert datetime to UNIX string
+        /// <summary>
+        /// Convert datetime to UNIX string
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns>
+        /// (string)UnixTime
+        /// </returns>
         public static string ToUnixTime(DateTime dateTime)
         {
             DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime.ToUniversalTime());
@@ -40,7 +58,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
             return dateTimeOffset.ToUnixTimeSeconds().ToString();
         }
 
-        // Debug log object
+        /// <summary>
+        /// Debug log object
+        /// </summary>
+        /// <param name="_object"></param>
         public static void DebugLogObject(object _object)
         {
             var text = JsonConvert.SerializeObject(_object, Formatting.Indented);

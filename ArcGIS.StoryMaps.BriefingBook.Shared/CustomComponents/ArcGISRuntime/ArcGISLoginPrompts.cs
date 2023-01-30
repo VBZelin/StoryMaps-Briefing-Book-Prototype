@@ -22,13 +22,19 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
     {
         public static string ServiceUrl = "https://www.arcgis.com/sharing/rest";
 
-        // - An optional client secret for the app (only needed for the OAuthClientCredentials authorization type).
+        /// <summary>
+        /// - An optional client secret for the app (only needed for the OAuthClientCredentials authorization type).
+        /// </summary>
         public static string ClientSecret = "";
 
-        // - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
+        /// <summary>
+        /// - The Client ID for an app registered with the server (the ID below is for a public app created by the ArcGIS Maps SDK for Native Apps team).
+        /// </summary>
         private static readonly string AppClientId = @"NDiGU6O6UiscRDPw";
 
-        // - A URL for redirecting after a successful authorization (this must be a URL configured with the app).
+        /// <summary>
+        /// - A URL for redirecting after a successful authorization (this must be a URL configured with the app).
+        /// </summary>
         private static readonly string OAuthRedirectUrl = @"maui-ags-app://auth";
 
         public static async Task<bool> EnsureAGOLCredentialAsync()
@@ -93,7 +99,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
             AuthenticationManager.Current.OAuthAuthorizeHandler = new OAuthAuthorize();
         }
 
-        // ChallengeHandler function that will be called whenever access to a secured resource is attempted.
+        /// <summary>
+        /// ChallengeHandler function that will be called whenever access to a secured resource is attempted.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns>
+        /// (Credential)Credential
+        /// </returns>
         public static async Task<Credential> PromptCredentialAsync(CredentialRequestInfo info)
         {
             Credential credential = null;
