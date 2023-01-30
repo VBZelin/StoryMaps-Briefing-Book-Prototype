@@ -60,7 +60,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Login failed", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Login failed", ex.Message, "OK");
             }
 
             return loggedIn;

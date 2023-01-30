@@ -65,12 +65,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                         }
                         else
                         {
+                            await Shell.Current.DisplayAlert("Error", "Sign in failed", "OK");
                             await Shell.Current.GoToAsync("..");
                         }
                     }
                     catch (Exception e)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", e.ToString(), "OK");
+                        await Shell.Current.DisplayAlert("Error", e.ToString(), "OK");
                     }
 
                     break;
