@@ -23,6 +23,7 @@
 	  <None Remove="CustomComponents\ArcGISRuntime\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="CustomComponents\UI\ImageWithIndicator\" />
+	  <None Remove="Esri.ArcGISRuntime.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="CustomComponents\" />
@@ -32,6 +33,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	  <PackageReference Include="Esri.ArcGISRuntime.Maui" Version="200.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="CustomComponents\UI\ImageWithIndicator\ImageWithIndicator.xaml">

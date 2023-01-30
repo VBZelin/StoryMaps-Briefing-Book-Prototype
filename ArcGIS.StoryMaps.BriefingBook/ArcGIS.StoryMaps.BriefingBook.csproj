@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -44,6 +44,10 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
+		<PackageReference Include="Esri.ArcGISRuntime.Maui" Version="200.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="Helpers\" />
@@ -59,6 +63,11 @@
 		<None Remove="Pages\SignInPage\" />
 		<None Remove="Pages\GalleryPage\" />
 		<None Remove="Pages\BriefingPage\" />
+		<None Remove="Esri.ArcGISRuntime.Maui" />
+		<None Remove="sqlite-net-pcl" />
+		<None Remove="SQLitePCLRaw.bundle_green" />
+		<None Remove="Newtonsoft.Json" />
+		<None Remove="Services\ArcGISRuntime\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Helpers\" />
@@ -70,27 +79,23 @@
 		<Folder Include="Pages\SignInPage\" />
 		<Folder Include="Pages\GalleryPage\" />
 		<Folder Include="Pages\BriefingPage\" />
+		<Folder Include="Services\ArcGISRuntime\" />
 	</ItemGroup>
 	<ItemGroup>
 		<MauiXaml Update="Pages\LandingPage\LandingPage.xaml">
-			<SubType>
-			</SubType>
+			<SubType></SubType>
 		</MauiXaml>
 		<MauiXaml Update="Pages\PortalChooserPage\PortalChooserPage.xaml">
-			<SubType>
-			</SubType>
+			<SubType></SubType>
 		</MauiXaml>
 		<MauiXaml Update="Pages\SignInPage\SignInPage.xaml">
-			<SubType>
-			</SubType>
+			<SubType></SubType>
 		</MauiXaml>
 		<MauiXaml Update="Pages\GalleryPage\GalleryPage.xaml">
-			<SubType>
-			</SubType>
+			<SubType></SubType>
 		</MauiXaml>
 		<MauiXaml Update="Pages\BriefingPage\BriefingPage.xaml">
-			<SubType>
-			</SubType>
+			<SubType></SubType>
 		</MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
