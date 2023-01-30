@@ -1,7 +1,5 @@
 ﻿using System;
-
 using ArcGIS.StoryMaps.BriefingBook.Assets;
-
 
 namespace ArcGIS.StoryMaps.BriefingBook.Models
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ArcGIS.StoryMaps.BriefingBook.Models
 {
     public class TextContentModel : ContentModel
