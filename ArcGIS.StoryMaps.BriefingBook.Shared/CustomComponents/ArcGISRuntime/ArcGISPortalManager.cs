@@ -16,6 +16,11 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
             SignedInPortal = securedPortal;
         }
 
+        public void ResetSignInPortal()
+        {
+            SignedInPortal = null;
+        }
+
         public async Task<ArcGISPortal> GetPortalIfUrlIsValid(string portalUrl)
         {
             try
