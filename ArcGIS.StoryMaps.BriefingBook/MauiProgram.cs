@@ -38,12 +38,14 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<BriefingPageViewModel>();
+
         return mauiAppBuilder;
     }
 
     public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<BriefingPage>();
+
         return mauiAppBuilder;
     }
 }

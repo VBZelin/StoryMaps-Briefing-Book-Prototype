@@ -1,4 +1,5 @@
 ﻿using ArcGIS.StoryMaps.BriefingBook.Models;
+using ArcGIS.StoryMaps.BriefingBook.Assets;
 
 namespace ArcGIS.StoryMaps.BriefingBook.Pages
 {
@@ -21,10 +22,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
 
             BriefingPageContentModel briefingPageContentModel = new()
             {
-                ColumnSplit = 60,
-                RowSplit = 50,
+                ColumnSplitPercentage = 50,
+                RowSplitPercentage = 50,
                 NumberLeftColumnBlocks = 2,
-                NumberRightColumnBlocks = 2,
+                NumberRightColumnBlocks = 1,
                 PageContents = pageContents,
             };
 
@@ -32,13 +33,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
             {
                 PageTitle = "Briefing Page 1",
                 PageNumber = 1,
-                Classification = BriefingPageModel.ClassificationTypes.Unclassified
+                ClassificationType = ClassificationType.Unclassified
             };
 
             Dictionary<string, object> pageParameters = new()
             {
-                {"BriefingPageContentModel", briefingPageContentModel },
-                {"BriefingPageModel", briefingPageModel }
+                ["BriefingPageContentModel"] = briefingPageContentModel,
+                ["BriefingPageModel"] = briefingPageModel
             };
 
             await Shell.Current.GoToAsync($"/{nameof(BriefingPage)}", true, pageParameters);
