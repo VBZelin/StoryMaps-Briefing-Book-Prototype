@@ -28,8 +28,6 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-
                 return null;
             }
         }
