@@ -38,9 +38,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
         public static bool IsUrl(string text)
         {
             Uri outUri;
-            Uri.TryCreate(text, UriKind.Absolute, out outUri);
 
-            if (outUri.Scheme == Uri.UriSchemeHttp || outUri.Scheme == Uri.UriSchemeHttps)
+            if (Uri.TryCreate(text, UriKind.Absolute, out outUri) && (outUri.Scheme == Uri.UriSchemeHttp || outUri.Scheme == Uri.UriSchemeHttps))
             {
                 return true;
             }
