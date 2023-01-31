@@ -17,6 +17,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Assets
         public static readonly string CANCEL_CAP = "CANCEL";
         public static readonly string ARCGIS_ONLINE = "ArcGIS Online";
         public static readonly string ARCGIS_ENTERPRISE = "ArcGIS Enterprise";
+        public static readonly string SIGN_IN_WITH_ARCGIS_ONLINE = "Sign in with ArcGIS Online";
+        public static readonly string SIGN_IN_WITH_ARCGIS_ENTERPRISE = "Sign in with ArcGIS Enterprise";
     }
 }
 
