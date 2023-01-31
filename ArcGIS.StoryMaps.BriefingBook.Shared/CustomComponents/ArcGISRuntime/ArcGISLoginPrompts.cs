@@ -72,8 +72,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime
             return loggedIn;
         }
 
-        public static void SetChallengeHandler()
+        public static async Task SetChallengeHandler()
         {
+            await AuthenticationManager.Current.RemoveAndRevokeAllCredentialsAsync();
+
             // Define the server information for ArcGIS Online
             ServerInfo portalServerInfo = new ServerInfo(new Uri(ServiceUrl))
             {

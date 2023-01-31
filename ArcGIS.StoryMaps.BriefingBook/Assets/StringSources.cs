@@ -15,6 +15,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.Assets
         public static readonly string SIGN_OUT_CAP = "SIGN OUT";
         public static readonly string SIGN_OUT_DESCRIPTION = "Once signed out, you will be unable to use the app until you sign in again. Please note that you cannot sign in while offline.";
         public static readonly string CANCEL_CAP = "CANCEL";
+        public static readonly string ARCGIS_ONLINE = "ArcGIS Online";
+        public static readonly string ARCGIS_ENTERPRISE = "ArcGIS Enterprise";
+        public static readonly string SIGN_IN_WITH_ARCGIS_ONLINE = "Sign in with ArcGIS Online";
+        public static readonly string SIGN_IN_WITH_ARCGIS_ENTERPRISE = "Sign in with ArcGIS Enterprise";
     }
 }
 

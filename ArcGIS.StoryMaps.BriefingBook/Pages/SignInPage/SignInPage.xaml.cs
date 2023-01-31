@@ -43,7 +43,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
 
         public async Task DisplaySignInUI()
         {
-            Root.Title = "Sign in with ArcGIS Online";
+            Root.Title = SignInType == SignInType.OAuth ? StringSources.SIGN_IN_WITH_ARCGIS_ONLINE : StringSources.SIGN_IN_WITH_ARCGIS_ENTERPRISE;
 
             switch (SignInType)
             {
@@ -53,7 +53,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                         var serviceUrl = PortalUrl + "/sharing/rest";
 
                         ArcGISLoginPrompt.ServiceUrl = serviceUrl;
-                        ArcGISLoginPrompt.SetChallengeHandler();
+
+                        await ArcGISLoginPrompt.SetChallengeHandler();
 
                         ArcGISPortal securedPortal = await ArcGISPortal.CreateAsync(new Uri(serviceUrl), true);
 
@@ -77,9 +78,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                     break;
 
                 case SignInType.IWA:
+                    await Shell.Current.DisplayAlert("Portal type", "This is a IWA portal!", "OK");
+
                     break;
 
                 case SignInType.PKI:
+                    await Shell.Current.DisplayAlert("Portal type", "This is a PKI portal!", "OK");
+
                     break;
 
                 default:

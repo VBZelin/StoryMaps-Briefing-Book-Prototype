@@ -24,6 +24,7 @@
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="CustomComponents\UI\ImageWithIndicator\" />
 	  <None Remove="Esri.ArcGISRuntime.Maui" />
+	  <None Remove="Newtonsoft.Json" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="CustomComponents\" />
@@ -34,6 +35,7 @@
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	  <PackageReference Include="Esri.ArcGISRuntime.Maui" Version="200.0.0" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="CustomComponents\UI\ImageWithIndicator\ImageWithIndicator.xaml">
