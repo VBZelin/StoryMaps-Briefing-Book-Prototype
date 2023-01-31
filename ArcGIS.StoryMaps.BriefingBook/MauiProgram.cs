@@ -4,7 +4,10 @@ using ArcGIS.StoryMaps.BriefingBook.Pages;
 using ArcGIS.StoryMaps.BriefingBook.ViewModels;
 using ArcGIS.StoryMaps.BriefingBook.Services;
 using Esri.ArcGISRuntime.Maui;
+
+#if IOS && MACCATALYST
 using SQLitePCL;
+#endif
 
 namespace ArcGIS.StoryMaps.BriefingBook
 {
@@ -12,7 +15,10 @@ namespace ArcGIS.StoryMaps.BriefingBook
     {
         public static MauiApp CreateMauiApp()
         {
+
+#if IOS && MACCATALYST
             raw.SetProvider(new SQLite3Provider_sqlite3());
+#endif
 
             var builder = MauiApp.CreateBuilder();
             builder
