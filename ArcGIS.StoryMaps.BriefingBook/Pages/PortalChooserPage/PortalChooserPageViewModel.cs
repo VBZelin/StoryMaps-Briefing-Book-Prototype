@@ -190,6 +190,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
                 if (signInType != SignInType.Unknown)
                 {
+                    CurrentSignInType = signInType;
                     CurrentPortalUrl = reaPortallUrl;
 
                     IsValidUrl = true;
