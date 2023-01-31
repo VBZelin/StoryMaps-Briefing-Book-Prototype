@@ -1,9 +1,10 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Esri.ArcGISRuntime.Maui;
 using ArcGIS.StoryMaps.BriefingBook.Pages;
 using ArcGIS.StoryMaps.BriefingBook.ViewModels;
 using ArcGIS.StoryMaps.BriefingBook.Services;
+using Esri.ArcGISRuntime.Maui;
+using SQLitePCL;
 
 namespace ArcGIS.StoryMaps.BriefingBook
 {
@@ -11,6 +12,8 @@ namespace ArcGIS.StoryMaps.BriefingBook
     {
         public static MauiApp CreateMauiApp()
         {
+            raw.SetProvider(new SQLite3Provider_sqlite3());
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
