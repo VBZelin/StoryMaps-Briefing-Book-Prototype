@@ -7,7 +7,7 @@ using ArcGIS.StoryMaps.BriefingBook.Models;
 using ArcGIS.StoryMaps.BriefingBook.Services;
 using ArcGIS.StoryMaps.BriefingBook.Helpers;
 using ArcGIS.StoryMaps.BriefingBook.Pages;
-using Esri.ArcGISRuntime.Portal;
+using ArcGIS.StoryMaps.BriefingBook.Shared.CustomComponents.ArcGISRuntime;
 
 namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 {
@@ -16,7 +16,9 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         /// <summary>
         /// Parameters
         /// </summary>
-        public ArcGISPortal CurrentSecuredPortal { get; private set; }
+        public string CurrentPortalUrl { get; private set; }
+
+        public SignInType CurrentSignInType { get; set; }
 
         public string Message => GetMessage();
 
@@ -113,12 +115,10 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
                 execute: async () =>
                 {
                     // Remove "/sharing/rest" before adding to the database
-                    var portalUrl = CurrentSecuredPortal.Uri.ToString().Replace("/sharing/rest", "");
-
                     var portalInfoItem = new PortalInfoItem
                     {
-                        Name = CurrentSecuredPortal.PortalInfo.PortalName,
-                        Url = portalUrl,
+                        Name = CurrentSignInType == SignInType.OAuth ? StringSources.ARCGIS_ONLINE : StringSources.ARCGIS_ENTERPRISE,
+                        Url = CurrentPortalUrl,
                         UnixTime = DateTime.UtcNow,
                         Json = "{}"
                     };
@@ -127,8 +127,8 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
 
                     var pageParameters = new Dictionary<string, object>()
                     {
-                        ["PortalUrl"] = portalUrl,
-                        ["SignInType"] = SignInType.OAuth
+                        ["PortalUrl"] = CurrentPortalUrl,
+                        ["SignInType"] = CurrentSignInType
                     };
 
                     await Shell.Current.GoToAsync($"{nameof(SignInPage)}", pageParameters);
@@ -176,21 +176,21 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
         {
             IsCheckingUrl = true;
 
-            CurrentSecuredPortal = null;
+            CurrentPortalUrl = "";
 
             IsValidUrl = false;
 
-            var realUrl = Utility.GetRealPortalUrl(InputUrl);
+            var reaPortallUrl = Utility.GetRealPortalUrl(InputUrl);
 
-            var isUrl = Utility.IsUrl(realUrl);
+            var isUrl = Utility.IsUrl(reaPortallUrl);
 
             if (isUrl)
             {
-                var securedPortal = await _arcGISRuntimeService.ArcGISPortalManager.GetPortalIfUrlIsValid(realUrl);
+                var signInType = await _arcGISRuntimeService.ArcGISPortalManager.CheckAuthenticationType(reaPortallUrl);
 
-                if (securedPortal is not null)
+                if (signInType != SignInType.Unknown)
                 {
-                    CurrentSecuredPortal = securedPortal;
+                    CurrentPortalUrl = reaPortallUrl;
 
                     IsValidUrl = true;
                 }
@@ -225,6 +225,7 @@ namespace ArcGIS.StoryMaps.BriefingBook.ViewModels
             if (EqualityComparer<T>.Default.Equals(property, value))
             {
                 return false;
+
             }
 
             property = value;

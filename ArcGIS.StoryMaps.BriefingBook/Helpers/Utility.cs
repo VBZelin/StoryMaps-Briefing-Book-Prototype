@@ -37,11 +37,15 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
         /// </returns>
         public static bool IsUrl(string text)
         {
-            Regex regex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
+            Uri outUri;
+            Uri.TryCreate(text, UriKind.Absolute, out outUri);
 
-            MatchCollection matchCollection = regex.Matches(text);
+            if (outUri.Scheme == Uri.UriSchemeHttp || outUri.Scheme == Uri.UriSchemeHttps)
+            {
+                return true;
+            }
 
-            return matchCollection.Count > 0;
+            return false;
         }
 
         /// <summary>

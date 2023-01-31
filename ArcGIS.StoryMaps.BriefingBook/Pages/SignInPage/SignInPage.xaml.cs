@@ -77,9 +77,13 @@ namespace ArcGIS.StoryMaps.BriefingBook.Pages
                     break;
 
                 case SignInType.IWA:
+                    await Shell.Current.DisplayAlert("Portal type", "This is a IWA portal!", "OKAY");
+
                     break;
 
                 case SignInType.PKI:
+                    await Shell.Current.DisplayAlert("Portal type", "This is a PKI portal!", "OKAY");
+
                     break;
 
                 default:
