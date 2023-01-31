@@ -25,6 +25,9 @@ namespace ArcGIS.StoryMaps.BriefingBook.Helpers
             if (url.Contains("http://"))
                 url = url.Replace("http://", "https://");
 
+            if (url.EndsWith("/"))
+                url = url.Remove(url.Length - 1, 1);
+
             return url;
         }
 
